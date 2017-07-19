@@ -12,6 +12,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//Start connection
+
 var mongooseClient = require("./bin/mongoose_client");
 mongooseClient.connectDB(function () {
     console.log("db connection successful");
@@ -21,7 +23,7 @@ mongooseClient.connectDB(function () {
 
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -35,15 +37,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 //plan
 //users vaala same as assign2
 //then playlist vaala collection will have a field of username which will tell us created by which user
-//in each playlist one field public should be there by default to false . public playlists can be accesses by anyone
-//Praveen
+//in each playlist one field public should be there by default to false . public playlists can be accessed by anyone
 
+//Praveen
+var playlistHandler = require("./routes/playlistHandler");
+app.use('/api/playlists',playlistHandler);
 
 //Mishal
+/*
 var logoutHandler = require("./routes/logoutHandler");
 var usersHandler = require("./routes/usersHandler");
 app.use('/api/logout', logoutHandler);
 app.use('/api/users', usersHandler);
+*/
 
 
 

@@ -1,0 +1,21 @@
+<div ng-controller="loginCtrl" class="login">
+
+    <div class="input-group input-group-lg ">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" ng-model="username" class="form-control" placeholder="Username"
+               ng-keypress="($event.charCode==13)? submit() : return"
+               aria-describedby="sizing-addon1">
+    </div>
+    <br>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" ng-model="password" class="form-control"
+               ng-keypress="($event.charCode==13)? submit() : return" placeholder="Password"
+               aria-describedby="sizing-addon2">
+    </div>
+    <br>
+    <div class="form-actions">
+        <button type="button" ng-click="submit()" class="login-buttons btn btn-primary">LOGIN</button>
+        <a class="login-buttons btn btn-link" ui-sref="register">Not Registered? Sign Up</a>
+    </div>
+</div>

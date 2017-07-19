@@ -1,0 +1,44 @@
+.login-buttons {
+    width: 100%;
+    line-height: 150%;
+}
+
+.custom-table {
+    font-size: larger;
+    border: solid 3px;
+    cursor: pointer;
+}
+
+.custom-table thead {
+    border-bottom: solid 3px;
+    font-size: large;
+}
+
+.post-buttons {
+    width: 40%;
+    line-height: 150%;
+}
+
+a {
+    cursor: pointer
+}
+
+.header {
+    padding: 10px;
+}
+
+footer {
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: wheat;
+    line-height: 20px;
+    padding-top: 10px;
+}
+
+.scroll{
+    padding-bottom: 40px;
+    overflow-y: auto;
+}

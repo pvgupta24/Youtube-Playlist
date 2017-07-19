@@ -1,0 +1,32 @@
+<nav class="navbar navbar-inverse header">
+    <div class="container">
+        <div class="navbar-header text-center">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="display-1  text-center navbar-left" ui-sref="home"><!--Angular Front End-->
+                <!--<img src="logo.png">-->
+            </a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ui-sref="users">Users</a>
+                </li>
+                <li>
+                    <a ui-sref="playlists">Playlists</a>
+                </li>
+              <!--  <li>
+                    <a ng-controller="logoutCtrl" ng-hide="hideLogout" ng-click="logOut()">Logout</a>
+                    <a ng-controller="logoutCtrl" ng-hide="hideLogin" ng-click="login()">Login</a>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</nav>

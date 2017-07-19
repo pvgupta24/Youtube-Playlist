@@ -1,0 +1,32 @@
+<div class="container" ng-controller="registerCtrl">
+
+
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon" ><i class="glyphicon glyphicon-user blue"></i></span>
+        <input type="text" ng-model="name" class="form-control" placeholder="Name" aria-describedby="sizing-addon1">
+    </div>
+
+    <br>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon blue" ><i class="glyphicon glyphicon-envelope"></i></span>
+        <input type="text" ng-model="email" class="form-control" placeholder="Email ID" aria-describedby="sizing-addon1">
+    </div>
+
+    <br>
+
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        <input type="text" ng-model="username" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+    </div>
+
+    <br>
+    <div class="input-group input-group-lg">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <input type="password" ng-model="password" class="form-control" placeholder="Password"
+               aria-describedby="sizing-addon2">
+    </div>
+    <br>
+    <div class="form-actions">
+        <button type="button" ng-click="register()" class="form-control login-buttons btn btn-primary">REGISTER</button>
+    </div>
+</div>

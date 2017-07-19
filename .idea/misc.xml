@@ -5,12 +5,6 @@
     <exe-path />
     <config-path />
   </component>
-  <component name="JsFlowSettings">
-    <service-enabled>false</service-enabled>
-    <exe-path />
-    <annotation-enable>false</annotation-enable>
-    <other-services-enabled>false</other-services-enabled>
-  </component>
   <component name="masterDetails">
     <states>
       <state key="ScopeChooserConfigurable.UI">

@@ -1,0 +1,48 @@
+<div ng-controller="usersCtrl">
+    <div class="input-group input-group-lg ">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        <input type="text" ng-model="search" class="form-control" placeholder="Search Box"
+               aria-describedby="sizing-addon1">
+    </div>
+    <br>
+    <div class=" alert alert-info" ng-hide="userHide">
+        <button type="button" class="close" aria-label="Close" ng-click="close()">
+            <span aria-hidden="true" class="">&times;</span>
+        </button>
+        <div>
+            <blockquote class="">
+                <b>NAME </b> : <span class="text-capitalize"> {{userData. name}}</span><br>
+                <b>Email ID</b> :<span> {{userData.email}}</span>&nbsp;
+
+                <small>&nbsp;@{{username}}</small>
+                &nbsp;&nbsp;
+                <span class="float-left badge badge-success">&nbsp;{{userData.admin}}&nbsp;</span>
+            </blockquote>
+
+        </div>
+    </div>
+    <table class="custom-table table table-hover table-striped">
+        <thead class="thead">
+
+        <tr>
+            <th>#</th>
+            <th>NAME</th>
+            <th>USER-NAME</th>
+        </tr>
+        </thead>
+        <tbody class="">
+
+        <tr ng-repeat="user in users|filter:search" ng-click="userDetails(user.username)">
+            <th scope="row">{{1+$index}}</th>
+            <td class="text-capitalize"><b>{{user.name}}</b></td>
+            <td>
+                <small>{{user.username}}</small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+

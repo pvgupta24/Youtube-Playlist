@@ -1,0 +1,60 @@
+<!--Created by Praveen Gupta on 19-07-2017.
+This is just to test the restful apis
+-->
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Angular-Sample</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+    <script>
+        function paperController($scope, $http){
+            $scope.sendData = function(){
+                //var dataObj = {};
+                // if($scope.data !== '')
+                 //dataObj = JSON.parse($scope.data);
+                $http({
+                    url : $scope.url,
+                    data : $scope.data,
+                    method : $scope.method
+                    //withCredentials : true
+                }).then(function(response){
+                    $scope.serverResponse = response.data;
+                    console.log(response.data);
+                    console.log("I'm done");
+                },function(response){
+                    // do nothing, cry!
+                    $scope.serverResponse = "Error!"+ response.status;
+                });
+            };
+        }
+        angular.module('mainApp',[])
+            .controller('paperController',paperController);
+    </script>
+</head>
+<body>
+<h1><a href="ind.html">GOTO MAIN index.html(this one is to test apis . remove later)</a> </h1>
+<div class="info">
+    use only path as the url, like /api/...
+</div>
+<div class="container" ng-controller="paperController">
+    url : <br>
+    <input type="text" ng-model = "url">
+    <br>
+    method : <br>
+    <input type="text" ng-model = "method">
+    <br>
+    Data : <br>
+    <textarea ng-model = "data"></textarea>
+    <br>
+    <button ng-click="sendData()">Send</button>
+    <h2>The server responded with:</h2>
+    <pre>
+	{{data + serverResponse}}
+
+</pre>
+</div>
+</body>
+</html>
