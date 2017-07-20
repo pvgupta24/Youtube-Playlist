@@ -141,6 +141,14 @@ app.controller('logoutCtrl', function ($http, $scope, $state, $rootScope, $sessi
 });
 */
 
-app.controller('playlistsCtrl',['$scope',function ($scope) {
-
+app.controller('playlistsCtrl',['$scope','$http',function ($scope,$http) {
+    $http({
+        method: 'GET',
+        url: "/api/playlists",
+    }).then(function success(res) {
+        console.log(res);
+        $scope.playlists=res.data;
+    },function fail() {
+    console.log("hmmmmmmmm failed");
+    });
 }]);

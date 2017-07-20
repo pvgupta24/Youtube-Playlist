@@ -1,14 +1,18 @@
+/*
 .login-buttons {
     width: 100%;
     line-height: 150%;
 }
+*/
 
+/*
 .custom-table {
     font-size: larger;
     border: solid 3px;
     cursor: pointer;
 }
-
+*/
+/*
 .custom-table thead {
     border-bottom: solid 3px;
     font-size: large;
@@ -17,7 +21,7 @@
 .post-buttons {
     width: 40%;
     line-height: 150%;
-}
+}*/
 
 a {
     cursor: pointer

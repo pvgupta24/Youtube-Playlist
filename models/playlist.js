@@ -7,9 +7,10 @@ var Schema = mongoose.Schema;
 var playlistSchema = new Schema(
     {
         name: {type: String, required: true,unique:true},
+        nameOfUser:{type:String,required:true},
         username: {type: String, required: true},
         public: {type: Boolean, default: false},
-        songs: {type:Array,default:[]},//{{[{type: String, lowercase: true, trim: true}]},default:[]},
+        songs: {type:Array,default:[]},
         created:{type:Date},
         updated:{type:Date}
     }

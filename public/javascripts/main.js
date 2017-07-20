@@ -10,5 +10,6 @@ app.config(function ($stateProvider,$urlRouterProvider) {
     $stateProvider
         .state('home',{url:'/home',templateUrl:'./templates/home.html'})
         .state('playlists',{url:'/playlists',templateUrl:'./templates/playlists.html'})
-        .state('playlist',{url:'/playlist',templateUrl:'./templates/playlists.html'});
+        .state('playlist',{url:'/playlist',templateUrl:'./templates/playlist.html'});
 });
+
