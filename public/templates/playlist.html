@@ -1,3 +1,21 @@
-<div>
+<div ng-controller="playlistCtrl">
 
+
+
+
+
+    <div class="input-group">
+
+        <input ng-model="songUrl" type="text" class="form-control" placeholder="Add song url to add">
+        <span class="input-group-btn">
+    <button class="btn btn-info" type="button" ng-click="addSong()">Add</button>
+  </span>
+    </div>
+    <ul>
+        <li ng-repeat="song in songs track by $index">
+            <iframe ng-src="{{song}}" allowfullscreen></iframe>
+            {{song}}
+            <button type="button" ng-click="deleteSong(song)"  class="btn btn-danger">Delete</button>
+        </li>
+    </ul>
 </div>

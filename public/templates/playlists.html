@@ -1,3 +1,43 @@
 <div ng-controller="playlistsCtrl">
+    <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addplaylist">
+            Add New Playlist
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="addplaylist" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="exampleModal3Label">Add New Playlist
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="input-group">
+
+                            <input ng-model="playlistName" type="text" class="form-control"
+                                   placeholder="Playlist Name   ">
+
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addPlaylist()">Add Playlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <ul ng-repeat="playlist in playlists">
+        <li><a ng-click="openPlaylist(playlist.name)">{{playlist.name}}</a></li>
+    </ul>
 </div>

@@ -63,7 +63,22 @@ router.route("/:playlist").post(function (req, res) {
                 console.log(req.body.song + " added to " + playlist);
                 res.send(playlist);
             }
-        })
+        });
+});
+//Delete a song from playlist
+router.route("/:playlist/delete").post(function (req, res) {
+    console.log("yooooooooooooooooooooooooo"+req);
+    Playlist.findOneAndUpdate({name: req.params.playlist},
+        {$pull: {songs: req.body.song}},
+        function (err, playlist) {
+            if (err) {
+                res.send("Error:" + err);
+            }
+            else {
+                console.log(req.body.song + " removed from " + playlist);
+                res.send(playlist);
+            }
+        });
 });
 
 //Gets all public playlists
@@ -86,7 +101,7 @@ router.route('/:username').get(function (req, res) {
             res.send(err);
         }
         else {
-            console.log("Playlists for " + req.params.username + ":\n"+playlists);
+            console.log("Playlists for " + req.params.username + ":\n" + playlists);
             res.send(playlists);
         }
     });
@@ -99,8 +114,9 @@ router.route('/:username/orPublic').get(function (req, res) {
             res.send(err);
         }
         else {
-            console.log("Playlists for " + req.params.username + " & public playlists:\n"+playlists)
-            res.send(playlists);''
+            console.log("Playlists for " + req.params.username + " & public playlists:\n" + playlists)
+            res.send(playlists);
+            ''
         }
     });
 });

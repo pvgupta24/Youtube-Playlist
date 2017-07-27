@@ -20,7 +20,6 @@ playlistSchema.pre('save', function (next) {
     this.updated = new Date();
     if (!this.created)
         this.created = new Date();
-    console.log("3csdc");
     next();
 
 });
