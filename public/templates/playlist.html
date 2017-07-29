@@ -1,21 +1,67 @@
 <div ng-controller="playlistCtrl">
 
 
+    <div class="container row">{{playlistName}}
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#playAllModal" ng-click="playAllButton()">Play ALL <i class="fa fa-play"></i></button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="playAllModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModal3Label"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">LOGIN
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>`
+                            </button>
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9 ">
+                            <iframe class="embed-responsive-item" ng-src="{{trustUrl(playAllUrl)}}"
+                                    allowfullscreen></iframe>
 
+                        </div>
+                    </div>
+                    <!--<div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <div class="input-group">
 
-        <input ng-model="songUrl" type="text" class="form-control" placeholder="Add song url to add">
+        <input ng-model="songUrl" type="text" class="form-control"
+               placeholder="Add youtube url to add song to playlist">
         <span class="input-group-btn">
-    <button class="btn btn-info" type="button" ng-click="addSong()">Add</button>
+    <button class="btn btn-info" type="button" ng-click="addSong()">Add Song</button>
   </span>
     </div>
-    <ul>
-        <li ng-repeat="song in songs track by $index">
-            <iframe ng-src="{{song}}" allowfullscreen></iframe>
-            {{song}}
-            <button type="button" ng-click="deleteSong(song)"  class="btn btn-danger">Delete</button>
-        </li>
-    </ul>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-4 " ng-repeat="song in songs track by $index">
+            <div class="thumbnail well well-sm">
+
+                <div class="embed-responsive embed-responsive-4by3 ">
+                    <iframe class="embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
+                    <button type="button" ng-click="deleteSong(song)" class="btn btn-danger">Delete</button>
+                </div>
+
+                <div class="caption">
+                    <h3>Thumbnail label</h3>
+                    <p>
+                        <a href="#" class="btn btn-primary" role="button">Button</a>
+                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger">Delete</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
