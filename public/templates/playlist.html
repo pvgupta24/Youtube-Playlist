@@ -3,7 +3,11 @@
 
     <div class="container row">{{playlistName}}
         <button type="button" class="btn btn-primary" data-toggle="modal"
-                data-target="#playAllModal" ng-click="playAllButton()">Play ALL <i class="fa fa-play"></i></button>
+                data-target="#playAllModal" ng-click="playAllButton()">Play ALL <i class="fa fa-play"></i>
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#playAllModal" ng-click="shuffleAllButton()">Shuffle ALL <i class="fa fa-random"></i>
+        </button>
 
         <!-- Modal -->
         <div class="modal fade" id="playAllModal" tabindex="-1" role="dialog"
@@ -20,9 +24,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="embed-responsive embed-responsive-16by9 ">
-                            <iframe class="embed-responsive-item" ng-src="{{trustUrl(playAllUrl)}}"
-                                    allowfullscreen></iframe>
-
+                            <iframe class="embed-responsive-item" ng-src="{{trustUrl(playAllUrl)}}" allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
                     <!--<div class="modal-footer">

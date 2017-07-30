@@ -181,13 +181,44 @@ app.controller('playlistCtrl',
         };
         $scope.playlistName = $sessionStorage.currentPlaylistName;
         $scope.playAllButton = function () {
+            refreshPlaylist();
             $scope.playAllUrl = $scope.songs[0] + "?playlist=";
 
             for (id in $scope.songs) {
                 if (id > 0)
-                    $scope.playAllUrl += $scope.songs[id];
+                    $scope.playAllUrl += $scope.songs[id] + ',';
             }
+            $scope.playAllUrl.slice(0, -1);
             $scope.playAllUrl += "&autoplay=1";
+        };
+        $scope.shuffleAllButton = function () {
+            refreshPlaylist();
+            function shuffle(array) {
+                var copy = [], n = array.length, i;
+
+                // While there remain elements to shuffle…
+                while (n) {
+
+                    // Pick a remaining element…
+                    i = Math.floor(Math.random() * n--);
+
+                    // And move it to the new array.
+                    copy.push(array.splice(i, 1)[0]);
+                }
+
+                return copy;
+            }
+
+            var shuffledPlaylist = shuffle($scope.songs);
+            $scope.playAllUrl = shuffledPlaylist[0] + "?playlist=";
+
+            for (id in shuffledPlaylist) {
+                if (id > 0)
+                    $scope.playAllUrl += shuffledPlaylist[id] + ',';
+            }
+            $scope.playAllUrl.slice(0, -1);
+            $scope.playAllUrl += "&autoplay=1";
+            console.log(shuffledPlaylist);
         };
         var refreshPlaylist = function () {
 
@@ -210,6 +241,7 @@ app.controller('playlistCtrl',
             });
         };
         refreshPlaylist();
+
 
         $scope.addSong = function () {
 
@@ -287,18 +319,34 @@ app.controller('playlistCtrl',
                 console.log('delete nhi hua');
             });
         }
-    }]);
-app.controller('loginCtrl',
-    ['$scope', function ($scope) {
-        $scope.loginGoogle = function () {
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                console.log('ID: ' + profile.getId());
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail());
-            }
 
-            window.onSignIn = onSignIn;
-        }
+
     }]);
+
+app.controller('loginCtrl',
+    ['$scope', '$window', function ($scope, $window) {
+        $scope.signOut = function () {
+
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        };
+        $scope.loginGoogle = function () {
+            console.log('yoooooooo' + $window.profile.getEmail());
+
+        };
+
+
+    }]);
+var profile;
+function onSignIn(googleUser) {
+    profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId());
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail());
+    var id_token = googleUser.getAuthResponse().id_token;
+
+}
+

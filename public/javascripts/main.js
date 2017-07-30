@@ -13,3 +13,5 @@ app.config(function ($stateProvider,$urlRouterProvider) {
         .state('playlist',{url:'/playlist',templateUrl:'./templates/playlist.html'});
 });
 
+
+

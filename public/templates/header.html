@@ -1,5 +1,5 @@
 <nav class="navbar navbar-inverse header">
-    <div class="container">
+    <div class="container" ng-controller="loginCtrl">
         <div class="navbar-header text-center">
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#navbar"
@@ -21,17 +21,27 @@
                     <a ui-sref="playlists">Playlists</a>
                 </li>
                 <li>
+                    <div class="modal-body">
+                        <a class="btn btn-block btn-social btn-google"
+                           data-onsuccess="onSignIn"
+                           ng-click="loginGoogle()">
+                            <span class="fa fa-google"></span> Sign in with Google
+                        </a>
+                    </div>
+                </li>
+                <li>
                     <script src="https://apis.google.com/js/platform.js" async defer></script>
                     <meta name="google-signin-client_id"
-                          content="1092909644467-9452pf19vkeci05bdokp0pscgi451pos.apps.googleusercontent.com">
+                          content="">
 
                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
                 </li>
-                <li ng-controller="loginCtrl">
+                <li>
                     <div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
-                            LOGIN
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3"
+                                ng-click="signOut()">
+                            Logout
                         </button>
 
                         <!-- Modal -->

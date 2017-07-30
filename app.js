@@ -38,6 +38,10 @@ app.use(function (req, res, next) {
     next(err);
 });
 
+//Google Sign IN
+var auth = require('./middlewares/google_auth');
+
+
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
