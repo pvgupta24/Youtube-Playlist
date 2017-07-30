@@ -20,19 +20,17 @@
                 <li>
                     <a ui-sref="playlists">Playlists</a>
                 </li>
-                <li>
-                    <div class="modal-body">
-                        <a class="btn btn-block btn-social btn-google"
-                           data-onsuccess="onSignIn"
-                           ng-click="loginGoogle()">
-                            <span class="fa fa-google"></span> Sign in with Google
-                        </a>
-                    </div>
-                </li>
+                <li><div class="modal-body">
+                    <a class="btn btn-block btn-social btn-google"
+                       data-onsuccess="onSignIn"
+                       ng-click="loginGoogle()">
+                        <span class="fa fa-google"></span> Sign in with Google
+                    </a>
+                </div></li>
                 <li>
                     <script src="https://apis.google.com/js/platform.js" async defer></script>
                     <meta name="google-signin-client_id"
-                          content="">
+                          content="1092909644467-gegh4tedbru8abno15kkhr6u4ea8tfco.apps.googleusercontent.com">
 
                     <div class="g-signin2" data-onsuccess="onSignIn"></div>
 
