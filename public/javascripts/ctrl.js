@@ -2,144 +2,32 @@
  * Created by Praveen Gupta on 19-07-2017.
  */
 
-/*
+app.controller('homeCtrl',
+    ['$sessionStorage', '$http', '$scope', function ($sessionStorage, $http, $scope) {
+        var url;
+        if ($sessionStorage.user.loggedIn) {
+            url = '/api/playlists/' + $sessionStorage.user.email + '/orPublic';
+        }
+        else {
+            console.log('not logged in');
+            url = '/api/playlists/public';
+        }
+        $http(
+            {
+                method: 'GET',
+                url: url
+            }
+        ).then(function success(res) {
+            console.log('Success mei ghusa');
+            console.log(res);
+        }, function fail(err) {
+            console.log(err);
+        });
 
- app.controller('loginCtrl', function ($location, $scope, $http, $rootScope, $sessionStorage) {
-
-
- $scope.submit = function () {
- $http({
- method: 'POST',
- url: "https://ieeespwd.herokuapp.com/api/users/" + $scope.username,
- data: {"password": $scope.password}
- }).then(function success(response) {
- if (response.data['statusText'] === "Success") {
- $sessionStorage.loggedIn = true;
- $rootScope.hideLogout = !$sessionStorage.loggedIn;
- $rootScope.hideLogin = $sessionStorage.loggedIn;
- $rootScope.username = $scope.username;
- $location.path('/home');
-
- $rootScope.toast = "Welcome " + $scope.username;
- toast();
- }
- else {
- $rootScope.toast = response.data['statusText'];
- toast();
- $sessionStorage.loggedIn = false;
- }
- }, function () {
- $rootScope.toast = "Could not complete your request.. Please try again.";
- toast();
- })
- };
-
- });
-
- app.controller('registerCtrl', function ($scope, $http, $location) {
-
- $scope.register = function () {
- var data = {
- "username": $scope.username,
- "password": $scope.password,
- "name": $scope.name,
- "admin": false,
- "email": $scope.email
- };
- $http({
- method: 'POST',
- url: "https://ieeespwd.herokuapp.com/api/users",
- data: data
- }).then(function success(response) {
- $location.path('/home');
- $rootScope.toast = 'Successfull added' + $scope.username;
- toast();
- });
- }
-
- });
-
- app.controller('usersCtrl', function ($scope, $http, $rootScope, $state, $location, $sessionStorage) {
- if (!$sessionStorage.loggedIn) {
- $rootScope.toast = "Please login to see users!!";
- toast();
- $state.go('login');
- }
- $scope.userDetail = {};
-
- $scope.userHide = true;
-
- $http({
- method: 'GET',
- url: "https://ieeespwd.herokuapp.com/api/users"
- }).then(function (response) {
- $scope.users = response.data.data;
- });
- $scope.userDetails = function userDetails(username) {
- $scope.username = username;
- $http({
- method: 'GET',
- url: "https://ieeespwd.herokuapp.com/api/users/" + username
- }).then(function (response) {
- $scope.userData = response.data;
- if ($scope.userData.admin) {
- $scope.userData.admin = "Admin";
- }
- else {
- $scope.userData.admin = "Basic User";
- }
- });
- $scope.userHide = false;
-
- };
- if ($rootScope.author != null)
- $scope.userDetails($rootScope.author.username);
-
- $rootScope.author = null;
- $scope.close = function () {
- $scope.userDetail = {};
- $scope.userHide = true;
- }
- });
- app.controller('logoutCtrl', function ($http, $scope, $state, $rootScope, $sessionStorage) {
-
-
- if ($sessionStorage.loggedIn == null)
- $sessionStorage.loggedIn = false;
-
- if ($sessionStorage.loggedIn !== null) {
-
- }
- $rootScope.hideLogout = !$sessionStorage.loggedIn;
- $rootScope.hideLogin = $sessionStorage.loggedIn;
- $scope.logOut = function () {
- toast();
- $http({
- method: 'POST',
- url: "https://ieeespwd.herokuapp.com/api/logout"
- }).then(function () {
-
- $sessionStorage.loggedIn = false;
- $rootScope.hideLogout = true;
- $rootScope.hideLogin = false;
- $state.go('home');
- $rootScope.toast = "Logged Out";
- toast();
- }
-
- , function () {
- $rootScope.toast = 'Could not Logout';
- toast();
- });
- };
- $scope.login = function () {
- $state.go('login');
- };
- });
- */
-
+    }]);
 app.controller('playlistsCtrl',
     ['$scope', '$http', '$state', '$sessionStorage', function ($scope, $http, $state, $sessionStorage) {
+        $scope.newPlaylistDetails = {publicCheckBox: true};
         var refresh = function () {
             $http({
                 method: 'GET',
@@ -156,24 +44,33 @@ app.controller('playlistsCtrl',
             $state.go('playlist');
         };
         $scope.addPlaylist = function () {
-            $http({
-                method: 'POST',
-                url: "/api/playlists",
-                data: {
-                    name: $scope.playlistName,
-                    nameOfUser: 'Praveen',
-                    username: 'mishal23'
-                }
-            }).then(function success(res) {
-                console.log(res);
-                refresh();
-            }, function fail() {
-            });
+
+            console.log($scope.newPlaylistDetails.publicCheckBox);
+            if ($sessionStorage.user.loggedIn) {
+                console.log('Trying to create playlist');
+                $http({
+                    method: 'POST',
+                    url: "/api/playlists",
+                    data: {
+                        name: $scope.newPlaylistDetails.playlistName,
+                        nameOfUser: $sessionStorage.user.name,
+                        email: $sessionStorage.user.email,
+                        public: $scope.newPlaylistDetails.publicCheckBox
+                    }
+                }).then(function success(res) {
+                    console.log(res);
+                    refresh();
+                }, function fail() {
+                });
+            }
+            else {
+                console.log('Login First bro!');
+            }
         }
     }]);
 
 app.controller('playlistCtrl',
-    ['$scope', '$sessionStorage', '$http', '$sce', function ($scope, $sessionStorage, $http, $sce) {
+    ['$state', '$scope', '$sessionStorage', '$http', '$sce', function ($state, $scope, $sessionStorage, $http, $sce) {
 
 
         $scope.trustUrl = function (url) {
@@ -220,6 +117,19 @@ app.controller('playlistCtrl',
             $scope.playAllUrl += "&autoplay=1";
             console.log(shuffledPlaylist);
         };
+        $scope.deletePlaylistButton = function () {
+            console.log($sessionStorage.currentPlaylistName);
+            $http({
+                method: 'POST',
+                url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/delete'
+            }).then(function success(res) {
+                console.log('deleted');
+                console.log(res);
+                $state.go('playlists');
+            }, function fail(err) {
+                console.log(err);
+            });
+        };
         var refreshPlaylist = function () {
 
             $http({
@@ -228,21 +138,11 @@ app.controller('playlistCtrl',
             }).then(function success(res) {
                 console.log(res);
                 $scope.songs = res.data.songs;
-
-
-                /*for(var i=0;i<$scope.songs.length;i++){
-                 $scope.songs[i].trustedUrl=$sce.trustAsResourceUrl($scope.songs[i]);
-                 console.log($scope.songs[i]);
-                 console.log($scope.songs[i].trustedUrl);
-                 }*/
-
             }, function fail() {
                 console.log('Gadhe');
             });
         };
         refreshPlaylist();
-
-
         $scope.addSong = function () {
 
             var link = $scope.songUrl;
@@ -306,47 +206,76 @@ app.controller('playlistCtrl',
 
 
         };
-
         $scope.deleteSong = function (song) {
             console.log(song);
             $http({
                 method: 'POST',
-                url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/delete',
+                url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/deleteSong',
                 data: {song: song}
             }).then(function () {
                 refreshPlaylist();
             }, function () {
                 console.log('delete nhi hua');
             });
+        };
+        $scope.getSongDetails = function (id) {
+            console.log(id);
+            var song = {};
+            $http({
+                method: 'GET',
+                url: 'https://www.googleapis.com/youtube/v3/videos?id=Wd2B8OAotU8&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY&part=snippet'
+                // + id + '&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY&part=snippet'
+            }).then(function success(res) {
+                song.title = res.data.items[0].snippet.title.split("|")[0];
+                song.description = res.data.items[0].snippet.description.split("\n")[0];
+                console.log(song.title);
+                console.log(song.description);
+            }, function fail(err) {
+                console.log(err);
+            });
+            return song;
         }
-
-
     }]);
 
 app.controller('loginCtrl',
-    ['$scope', '$window', function ($scope, $window) {
+    ['$scope', '$window', '$sessionStorage', function ($scope, $window, $sessionStorage) {
         $scope.signOut = function () {
 
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
+                $scope.hideLoginButton = false;
+                $sessionStorage.user = {};
             });
         };
-        $scope.loginGoogle = function () {
-            console.log('yoooooooo' + $window.profile.getEmail());
-
+        $scope.signIn = function () {
+            //console.log('yoooooooo' + $window.profile.getEmail());
+            /* $sessionStorage.user = {
+             loggedIn: true,
+             id: $window.profile.getId(),
+             name: $window.profile.getName(),
+             imageUrl: $window.profile.getImageUrl(),
+             email: $window.profile.getEmail()
+             };*/
+            $sessionStorage.user = $window.user;
+            console.log($sessionStorage.user);
+            $scope.hideLoginButton = true;
         };
-
-
     }]);
-var profile;
+
+var profile, user;
 function onSignIn(googleUser) {
+
     profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId());
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail());
-    var id_token = googleUser.getAuthResponse().id_token;
-
+    /* console.log('ID: ' + profile.getId());
+     console.log('Name: ' + profile.getName());
+     console.log('Image URL: ' + profile.getImageUrl());
+     console.log('Email: ' + profile.getEmail());*/
+    user = {
+        loggedIn: true,
+        id: profile.getId(),
+        name: profile.getName(),
+        imageUrl: profile.getImageUrl(),
+        email: profile.getEmail()
+    };
 }
-

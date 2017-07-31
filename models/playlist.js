@@ -6,9 +6,10 @@ var Schema = mongoose.Schema;
 
 var playlistSchema = new Schema(
     {
-        name: {type: String, required: true,unique:true},
+        name: {type: String, required: true},
+        desciption: {type: String},
         nameOfUser:{type:String,required:true},
-        username: {type: String, required: true},
+        email: {type: String, required: true},
         public: {type: Boolean, default: false},
         songs: {type:Array,default:[]},
         created:{type:Date},
@@ -23,4 +24,4 @@ playlistSchema.pre('save', function (next) {
     next();
 
 });
-module.exports = mongoose.model('Playlist', playlistSchema);
+module.exports = mongoose.model('Playlist', playlistSchema, 'playlists');

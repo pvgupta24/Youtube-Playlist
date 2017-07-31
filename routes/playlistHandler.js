@@ -32,9 +32,17 @@ router.route("/").post(function (req, res) {
         }
         else {
             console.log("New Playlist created :" + playlistData.name);
-            res.send("New Playlist created :" + playlistData.name);
+            res.send(playlistData.name);
         }
     })
+});
+
+//Delete a playlist
+router.route("/:playlist/delete").post(function (req, res) {
+    console.log("to b deleted" + req.params.playlist);
+    Playlist.findOneAndRemove({name: req.params.playlist}, function (err, removedCount) {
+        res.send(err);
+    });
 });
 
 //Displays playlist information including list of songs
@@ -57,7 +65,7 @@ router.route("/:playlist").post(function (req, res) {
         {$push: {songs: req.body.song}},
         function (err, playlist) {
             if (err) {
-                res.send("Error:" + err);
+                res.send(err);
             }
             else {
                 console.log(req.body.song + " added to " + playlist);
@@ -66,13 +74,13 @@ router.route("/:playlist").post(function (req, res) {
         });
 });
 //Delete a song from playlist
-router.route("/:playlist/delete").post(function (req, res) {
-    console.log("yooooooooooooooooooooooooo"+req);
+router.route("/:playlist/deleteSong").post(function (req, res) {
+    console.log("yooooooooooooooooooooooooo" + req);
     Playlist.findOneAndUpdate({name: req.params.playlist},
         {$pull: {songs: req.body.song}},
         function (err, playlist) {
             if (err) {
-                res.send("Error:" + err);
+                res.send(err);
             }
             else {
                 console.log(req.body.song + " removed from " + playlist);
@@ -82,13 +90,16 @@ router.route("/:playlist/delete").post(function (req, res) {
 });
 
 //Gets all public playlists
-router.route('/public').get(function (req, res) {
-    Playlist.find({public: true}, '-username', function (err, playlists) {
+router.route("/public").get(function (req, res) {
+    console.log('aaya');
+    Playlist.find({public: true}, function (err, playlists) {
         if (err) {
-            res.send("Error:" + err);
+            console.log('Error' + err);
+            res.send(err);
         }
         else {
-            res.send("Public Playlists:\n" + playlists);
+            console.log('sending public playlists');
+            res.send(playlists);
         }
     });
 });
@@ -106,6 +117,7 @@ router.route('/:username').get(function (req, res) {
         }
     });
 });
+
 //Gets all public playlists plus playlists with the given username
 router.route('/:username/orPublic').get(function (req, res) {
     Playlist.find({$or: [{username: req.params.username}, {public: true}]}, function (err, playlists) {
@@ -116,7 +128,6 @@ router.route('/:username/orPublic').get(function (req, res) {
         else {
             console.log("Playlists for " + req.params.username + " & public playlists:\n" + playlists)
             res.send(playlists);
-            ''
         }
     });
 });

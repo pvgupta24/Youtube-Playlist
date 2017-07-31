@@ -11,7 +11,8 @@
             </button>
             <!--Angular Front End-->
             <a class=" text-center navbar-left" ui-sref="home">
-                <img src="favicon.ico" width="100px">
+                <!--<img src="favicon.ico" width="100px">-->
+                HOME
             </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
@@ -20,55 +21,71 @@
                 <li>
                     <a ui-sref="playlists">Playlists</a>
                 </li>
-                <li><div class="modal-body">
-                    <a class="btn btn-block btn-social btn-google"
-                       data-onsuccess="onSignIn"
-                       ng-click="loginGoogle()">
-                        <span class="fa fa-google"></span> Sign in with Google
-                    </a>
-                </div></li>
-                <li>
+                <!-- <li><div class="modal-body">
+                     <a class="btn btn-block btn-social btn-google"
+                        data-onsuccess="onSignIn"
+                        ng-click="">
+                         <span class="fa fa-google"></span> Sign in with Google
+                     </a>
+                 </div></li>-->
+                <li ng-hide="hideLoginButton">
                     <script src="https://apis.google.com/js/platform.js" async defer></script>
                     <meta name="google-signin-client_id"
                           content="1092909644467-gegh4tedbru8abno15kkhr6u4ea8tfco.apps.googleusercontent.com">
 
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    <div class="g-signin2" data-onsuccess="onSignIn" ng-click="signIn()"></div>
 
                 </li>
-                <li>
+                <li ng-hide="!hideLoginButton">
+                    <!-- <div class="dropdown open">
+                         <button class="btn btn-secondary dropdown-toggle"
+                                 type="button" id="dropdownMenu4" data-toggle="dropdown"
+                                 aria-haspopup="true" aria-expanded="false">
+                             {{user.getName()}}
+                         </button>
+                         <div class="dropdown-menu">
+                             <a class="dropdown-item" href="#">Profile</a>
+                             <div class="dropdown-divider"></div>
+                             <a class="dropdown-item"  ng-click="signOut()">Sign Out</a>
+                         </div>
+                     </div>
+ -->
+
+
                     <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3"
-                                ng-click="signOut()">
+                                ng-click="signOut()"><img class="rounded-circle" ng-src="{{userProfile.getImageUrl()}}"
+                                                          alt="Circle image">
                             Logout
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
-                             aria-labelledby="exampleModal3Label"
-                             aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">LOGIN
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>`
-                                            </button>
-                                        </h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <a class="btn btn-block btn-social btn-google g-signin2"
-                                           data-onsuccess="onSignIn"
-                                           ng-click="loginGoogle()">
-                                            <span class="fa fa-google"></span> Sign in with Google
-                                        </a>
-                                    </div>
-                                    <!--<div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
+                        <!-- <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
+                              aria-labelledby="exampleModal3Label"
+                              aria-hidden="true">
+                             <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title">LOGIN
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                 <span aria-hidden="true">&times;</span>`
+                                             </button>
+                                         </h5>
+                                     </div>
+                                     <div class="modal-body">
+                                         <a class="btn btn-block btn-social btn-google g-signin2"
+                                            data-onsuccess="onSignIn"
+                                            ng-click="loginGoogle()">
+                                             <span class="fa fa-google"></span> Sign in with Google
+                                         </a>
+                                     </div>
+                                     &lt;!&ndash;<div class="modal-footer">
+                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                         <button type="button" class="btn btn-primary">Save changes</button>
+                                     </div>&ndash;&gt;
+                                 </div>
+                             </div>
+                         </div>-->
                     </div>
                 </li>
                 <!--  <li>

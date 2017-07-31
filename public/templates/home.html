@@ -1,7 +1,30 @@
-<div class="text-center">
+<div class="text-center" ng-controller="homeCtrl">
     <blockquote class="blockquote">This is a sample app made using <br>
         <h2 class="display-1">AngularJS & NodeJS</h2>
     </blockquote>
 
+    <table class="custom-table table table-hover table-striped">
+        <thead class="thead">
+
+        <tr>
+            <th>#</th>
+            <th>Playlist Name</th>
+            <th>No. of Songs</th>
+            <th>Created by</th>
+            <th>Created on</th>
+            <th>Updated on</th>
+        </tr>
+        </thead>
+        <tbody class="">
+
+        <tr ng-repeat="user in users|filter:search" ng-click="userDetails(user.username)">
+            <th scope="row">{{1+$index}}</th>
+            <td class="text-capitalize"><b>{{user.name}}</b></td>
+            <td>
+                <small>{{user.username}}</small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 </div>

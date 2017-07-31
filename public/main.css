@@ -46,3 +46,8 @@ footer {
     padding-bottom: 40px;
     overflow-y: auto;
 }
+
+.slow .toggle-group {
+    transition: left 0.7s;
+    -webkit-transition: left 0.7s;
+}
