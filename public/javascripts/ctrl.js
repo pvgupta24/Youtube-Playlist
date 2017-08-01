@@ -4,22 +4,19 @@
 
 app.controller('homeCtrl',
     ['$sessionStorage', '$http', '$scope', function ($sessionStorage, $http, $scope) {
-        var url;
+        var url = '/api/playlists/public';
         if ($sessionStorage.user.loggedIn) {
             url = '/api/playlists/' + $sessionStorage.user.email + '/orPublic';
         }
-        else {
-            console.log('not logged in');
-            url = '/api/playlists/public';
-        }
+        console.log(url);
         $http(
             {
                 method: 'GET',
                 url: url
-            }
-        ).then(function success(res) {
+            }).then(function success(res) {
             console.log('Success mei ghusa');
             console.log(res);
+            $scope.playlists = res.data;
         }, function fail(err) {
             console.log(err);
         });
@@ -218,27 +215,36 @@ app.controller('playlistCtrl',
                 console.log('delete nhi hua');
             });
         };
-        $scope.getSongDetails = function (id) {
-            console.log(id);
-            var song = {};
+
+        $scope.title = [];
+        $scope.details = [];
+        $scope.getSongDetails = function (id, index) {
+
+            // var song = [{}];
             $http({
                 method: 'GET',
-                url: 'https://www.googleapis.com/youtube/v3/videos?id=Wd2B8OAotU8&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY&part=snippet'
-                // + id + '&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY&part=snippet'
+                url: 'https://www.googleapis.com/youtube/v3/videos?id=' + id + '&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY&part=snippet'
             }).then(function success(res) {
-                song.title = res.data.items[0].snippet.title.split("|")[0];
-                song.description = res.data.items[0].snippet.description.split("\n")[0];
-                console.log(song.title);
-                console.log(song.description);
+                $scope.title[index] = res.data.items[0].snippet.title.split("|")[0];
+                $scope.details[index] = res.data.items[0].snippet.description.split("\n")[0];
+                //console.log(song.title);
+                // = song.description;
+                //$scope.title = song.title;
+
             }, function fail(err) {
                 console.log(err);
             });
-            return song;
+            //console.log(song.title);
+            //return song;
         }
     }]);
 
 app.controller('loginCtrl',
-    ['$scope', '$window', '$sessionStorage', function ($scope, $window, $sessionStorage) {
+    ['$scope', '$window', '$sessionStorage', '$state', function ($scope, $window, $sessionStorage, $state) {
+
+        if ($sessionStorage.user.loggedIn)
+            $scope.hideLoginButton = true;
+
         $scope.signOut = function () {
 
             var auth2 = gapi.auth2.getAuthInstance();
@@ -246,20 +252,19 @@ app.controller('loginCtrl',
                 console.log('User signed out.');
                 $scope.hideLoginButton = false;
                 $sessionStorage.user = {};
+                $state.reload();
+
             });
+
+
         };
         $scope.signIn = function () {
-            //console.log('yoooooooo' + $window.profile.getEmail());
-            /* $sessionStorage.user = {
-             loggedIn: true,
-             id: $window.profile.getId(),
-             name: $window.profile.getName(),
-             imageUrl: $window.profile.getImageUrl(),
-             email: $window.profile.getEmail()
-             };*/
             $sessionStorage.user = $window.user;
+            $scope.user = $window.user;
+            //console.log(user);
             console.log($sessionStorage.user);
             $scope.hideLoginButton = true;
+            $state.reload();
         };
     }]);
 

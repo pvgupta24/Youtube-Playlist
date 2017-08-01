@@ -5,6 +5,25 @@ var express = require('express');
 var router = express.Router();
 var Playlist = require('../models/playlist');
 
+
+router.route("/public").get(function (req, res) {
+    console.log('\n\naaya\n\n');
+    Playlist.find({public: true}, function (err, playlists) {
+        if (err) {
+            console.log('Error' + err);
+            res.send(err);
+        }
+        else {
+            console.log('sending public playlists');
+            res.send(playlists);
+        }
+    });
+});
+
+/*router.route("/public").get(function (req,res) {
+ console.log('hmmmmmmmmmmmmm');
+ });*/
+
 //Lists all playlists
 router.route("/").get(function (req, res) {
 
@@ -89,9 +108,10 @@ router.route("/:playlist/deleteSong").post(function (req, res) {
         });
 });
 
+
 //Gets all public playlists
-router.route("/public").get(function (req, res) {
-    console.log('aaya');
+/*router.route("/public").get(function (req, res) {
+ console.log('\n\naaya\n\n');
     Playlist.find({public: true}, function (err, playlists) {
         if (err) {
             console.log('Error' + err);
@@ -102,7 +122,8 @@ router.route("/public").get(function (req, res) {
             res.send(playlists);
         }
     });
-});
+ });*/
+
 
 //Gets all playlists with the given username
 router.route('/:username').get(function (req, res) {

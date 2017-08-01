@@ -17,12 +17,13 @@
         </thead>
         <tbody class="">
 
-        <tr ng-repeat="user in users|filter:search" ng-click="userDetails(user.username)">
+        <tr ng-repeat="playlist in playlists|filter:search" ng-click="">
             <th scope="row">{{1+$index}}</th>
-            <td class="text-capitalize"><b>{{user.name}}</b></td>
-            <td>
-                <small>{{user.username}}</small>
-            </td>
+            <td class="text-capitalize"><b>{{playlist.name}}</b></td>
+            <td class="text-capitalize">{{playlist.songs.length}}</td>
+            <td class="text-capitalize">{{playlist.nameOfUser}}</td>
+            <td class="text-capitalize">{{playlist.created}}</td>
+            <td class="text-capitalize">{{playlist.updated}}</td>
         </tr>
         </tbody>
     </table>

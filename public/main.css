@@ -51,3 +51,7 @@ footer {
     transition: left 0.7s;
     -webkit-transition: left 0.7s;
 }
+
+.popover-content {
+    background-color: blanchedalmond;
+}
