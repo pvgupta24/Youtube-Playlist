@@ -1,9 +1,8 @@
 <div ng-controller="playlistsCtrl">
     <div>
-        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addplaylist">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addplaylist">
             Add New Playlist
         </button>
-        <br>
 
         <!-- Modal -->
         <div class="modal fade" id="addplaylist" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label"
@@ -19,11 +18,11 @@
                     </div>
                     <div class="modal-body ">
 
-                        <div class=""><!--input group-->
+                        <div class="input-group">
 
-                            <input ng-model="newPlaylistDetails.playlistName" type="text" class="form-control "
+                            <input ng-model="newPlaylistDetails.playlistName" type="text" class="form-control"
                                    placeholder="Playlist Name ">
-                            <br>
+                            <br><br>
 
                             <!--Toggle switch-->
                             <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
@@ -32,7 +31,7 @@
 
                             <input ng-model="newPlaylistDetails.publicCheckBox" type="checkbox" data-toggle="toggle"
                                    class="form-control" data-on="Public"
-                                   data-width="100" data-off="Private" data-offstyle="success" data-style="slow"
+                                   data-width="150%" data-off="Private" data-offstyle="success" data-style="slow"
                                    style="transition: left 0.7s; -webkit-transition: left 0.7s;">
 
                         </div>
@@ -77,6 +76,4 @@
             </div>
         </div>
     </div>
-
-
 </div>

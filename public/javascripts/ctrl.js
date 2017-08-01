@@ -20,7 +20,6 @@ app.controller('homeCtrl',
         }, function fail(err) {
             console.log(err);
         });
-
     }]);
 app.controller('playlistsCtrl',
     ['$scope', '$http', '$state', '$sessionStorage', function ($scope, $http, $state, $sessionStorage) {
@@ -240,11 +239,7 @@ app.controller('playlistCtrl',
     }]);
 
 app.controller('loginCtrl',
-    ['$scope', '$window', '$sessionStorage', '$state', function ($scope, $window, $sessionStorage, $state) {
-
-        if ($sessionStorage.user.loggedIn)
-            $scope.hideLoginButton = true;
-
+    ['$scope', '$window', '$sessionStorage', function ($scope, $window, $sessionStorage) {
         $scope.signOut = function () {
 
             var auth2 = gapi.auth2.getAuthInstance();
@@ -252,19 +247,21 @@ app.controller('loginCtrl',
                 console.log('User signed out.');
                 $scope.hideLoginButton = false;
                 $sessionStorage.user = {};
-                $state.reload();
-
             });
-
-
         };
         $scope.signIn = function () {
+            //console.log('yoooooooo' + $window.profile.getEmail());
+            /* $sessionStorage.user = {
+             loggedIn: true,
+             id: $window.profile.getId(),
+             name: $window.profile.getName(),
+             imageUrl: $window.profile.getImageUrl(),
+             email: $window.profile.getEmail()
+             };*/
             $sessionStorage.user = $window.user;
-            $scope.user = $window.user;
-            //console.log(user);
             console.log($sessionStorage.user);
+            $scope.user=$window.user;
             $scope.hideLoginButton = true;
-            $state.reload();
         };
     }]);
 
