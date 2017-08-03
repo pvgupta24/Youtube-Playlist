@@ -1,31 +1,35 @@
 <div class="text-center" ng-controller="homeCtrl">
-    <blockquote class="blockquote">This is a sample app made using <br>
-        <h2 class="display-1">AngularJS & NodeJS</h2>
+    <blockquote class="blockquote">
+
+        <div>
+            <table class="custom-table table table-hover table-striped ">
+                <thead class="thead thead-inverse">
+
+                <tr class="customThead">
+                    <th class="text-center">#</th>
+                    <th class="text-center">Playlist Name</th>
+                    <th class="text-center"></th>
+                    <th class="text-center">No. of Songs</th>
+                    <th class="text-center">Created by</th>
+                    <th class="text-center">Created on</th>
+                    <th class="text-center">Updated on</th>
+                </tr>
+                </thead>
+                <tbody class="" style="cursor: pointer">
+
+                <tr ng-repeat="playlist in playlists|filter:search" ng-click="openPlaylist(playlist.name)">
+                    <th scope="row">{{1+$index}}</th>
+                    <td class="text-capitalize"><b>{{playlist.name}}</b></td>
+                    <td><span ng-class="playlist.public?'label label-primary':'label label-success'">
+                            {{playlist.public?"public":"private"}}</span></td>
+                    <td class="text-capitalize ">{{playlist.songs.length}}</td>
+                    <td class="text-capitalize">{{playlist.nameOfUser}}</td>
+                    <td class="text-capitalize">{{formatDate(playlist.created)}}</td>
+                    <td class="text-capitalize">{{formatDate(playlist.updated)}}</td>
+                </tr>
+                </tbody>
+
+            </table>
+        </div>
     </blockquote>
-
-    <table class="custom-table table table-hover table-striped">
-        <thead class="thead">
-
-        <tr>
-            <th>#</th>
-            <th>Playlist Name</th>
-            <th>No. of Songs</th>
-            <th>Created by</th>
-            <th>Created on</th>
-            <th>Updated on</th>
-        </tr>
-        </thead>
-        <tbody class="">
-
-        <tr ng-repeat="playlist in playlists|filter:search" ng-click="">
-            <th scope="row">{{1+$index}}</th>
-            <td class="text-capitalize"><b>{{playlist.name}}</b></td>
-            <td class="text-capitalize">{{playlist.songs.length}}</td>
-            <td class="text-capitalize">{{playlist.nameOfUser}}</td>
-            <td class="text-capitalize">{{playlist.created}}</td>
-            <td class="text-capitalize">{{playlist.updated}}</td>
-        </tr>
-        </tbody>
-    </table>
-
 </div>

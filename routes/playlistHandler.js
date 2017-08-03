@@ -106,22 +106,22 @@ router.route("/:playlist/deleteSong").post(function (req, res) {
 
 
 //Gets all playlists with the given username
-router.route('/:username').get(function (req, res) {
-    Playlist.find({username: req.params.username}, function (err, playlists) {
+router.route('/:email').get(function (req, res) {
+    Playlist.find({email: req.params.email}, function (err, playlists) {
         if (err) {
             console.log("Error:" + err);
             res.send(err);
         }
         else {
-            console.log("Playlists for " + req.params.username + ":\n" + playlists);
+            console.log("Playlists for " + req.params.email + ":\n" + playlists);
             res.send(playlists);
         }
     });
 });
 
 //Gets all public playlists plus playlists with the given username
-router.route('/:username/orPublic').get(function (req, res) {
-    Playlist.find({$or: [{username: req.params.username}, {public: true}]}, function (err, playlists) {
+router.route('/:email/orPublic').get(function (req, res) {
+    Playlist.find({$or: [{email: req.params.email}, {public: true}]}, function (err, playlists) {
         if (err) {
             console.log("Error:" + err);
             res.send(err);

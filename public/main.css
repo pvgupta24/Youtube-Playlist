@@ -1,51 +1,129 @@
-/*
-.login-buttons {
-    width: 100%;
-    line-height: 150%;
-}
-*/
-
-/*
-.custom-table {
-    font-size: larger;
-    border: solid 3px;
-    cursor: pointer;
-}
-*/
-/*
-.custom-table thead {
-    border-bottom: solid 3px;
-    font-size: large;
+body {
+    /*
+    background:url('https://static.pexels.com/photos/87646/horsehead-nebula-dark-nebula-constellation-orion-87646.jpeg');
+    */
+    background-color: #08152b;
+    padding: 10px;
 }
 
-.post-buttons {
-    width: 40%;
-    line-height: 150%;
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+    /*  background-color:rgba(255,255,255,.8);*/
+}
+
+/*#logout-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
 }*/
+#login-dp .help-block {
+    font-size: 12px
+}
+
+#login-dp .bottom {
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #ddd;
+    clear: both;
+    padding: 14px;
+}
+
+#login-dp .social-buttons {
+    margin: 12px 0
+}
+
+#login-dp .social-buttons a {
+    width: 49%;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+.btn-fb {
+    color: #fff;
+    background-color: #3b5998;
+}
+
+.btn-fb:hover {
+    color: #fff;
+    background-color: #496ebc
+}
+
+.btn-g {
+    color: #fff;
+    background-color: #dd4b39;
+}
+
+.btn-g:hover {
+    color: #fff;
+    background-color: #a23729;
+}
+
+.navbar-login {
+
+    width: 350px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    #login-dp {
+        background-color: inherit;
+        color: #fff;
+    }
+
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
 
 a {
     cursor: pointer
 }
 
+.customThead {
+    background-color: #266898;
+}
+
 .header {
-    padding: 10px;
+    /* padding: 10px;*/
+    background-color: aliceblue;
 }
 
 footer {
+    /*
     clear: both;
+    */
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: black;
-    color: wheat;
+    background-color: whitesmoke;
+    color: darkblue;
     line-height: 20px;
     padding-top: 10px;
 }
 
-.scroll{
+.table-striped tbody tr:nth-child(even) {
+    background-color: rgba(255, 246, 187, 0.65);
+}
+
+.table-striped tbody tr:nth-child(odd) {
+    background-color: rgba(134, 139, 255, 0.65);
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #5e869f;
+    text-decoration: none;
+}
+
+/*.scroll {
     padding-bottom: 40px;
     overflow-y: auto;
-}
+}*/
 
 .slow .toggle-group {
     transition: left 0.7s;

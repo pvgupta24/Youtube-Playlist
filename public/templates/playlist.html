@@ -60,7 +60,8 @@
     <div class="input-group">
 
         <input ng-model="songUrl" type="text" class="form-control"
-               placeholder="Add youtube url to add song to playlist">
+               placeholder="Add youtube url to add song to playlist"
+               ng-keypress="($event.keyCode === 13)?addSong():console.log('Press Enter key to add song')">
         <span class="input-group-btn">
     <button class="btn btn-warning" type="button" ng-click="addSong()">Add Song</button>
   </span>
@@ -75,25 +76,31 @@
                     <iframe class="embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
                 </div>
 
-                  <div class="caption" ng-init="getSongDetails(song,$index)">
+                <div class="caption" ng-init="getSongDetails(song,$index)">
 
                     <script>$(function () {
                         $('[data-toggle="popover"]').popover()
                     });</script>
                     <!--<h3>{{title[$index]}}</h3>-->
                     <p>
+
                         <button tabindex="0" class="btn btn-info" role="button"
                                 data-toggle="popover" data-placement="top" data-trigger="focus"
                                 title="{{''+title[$index]}}"
                                 ng-click="getSongDetails(song)"
                                 data-content="{{details[$index]}}">
-                            {{title[$index]| limitTo: 15}}
+                            {{title[$index] }}
                         </button>
+
                         <!--
                         <button ng-click="songDescription =! songDescription;getSongDetails(song)"  class="btn btn-success">Description</button>
 
                         <span ng-show="songDescription">{{details[$index]}}</span>-->
-                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+
+                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger  "><i
+                                class="fa fa-trash-o"></i></button>
+
+
                         <br>
                     </p>
                 </div>
