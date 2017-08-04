@@ -3,7 +3,7 @@
  */
 
 app.service('myService', ['$rootScope,$timeout', function ($rootScope,$timeout) {
-    var obj = {};
+  /*  var obj = {};
     obj.toast = function (msg) {
         console.log('inside toast');
         $myToast = $('#myToast');
@@ -13,5 +13,8 @@ app.service('myService', ['$rootScope,$timeout', function ($rootScope,$timeout) 
             $myToast.modal('hide');
         }, 1500);
         return obj;
-    }
+    }*/
+    $scope.trustUrl = function (url) {
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
+    };
 }]);

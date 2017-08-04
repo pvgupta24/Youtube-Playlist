@@ -1,5 +1,5 @@
 <nav class="navbar header">
-    <div class="container" ng-controller="loginCtrl">
+    <div class="container" ng-controller="headerCtrl">
         <div class="navbar-header text-center">
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#navbar"
@@ -10,31 +10,55 @@
                 <span class="icon-bar"></span>
             </button>
             <!--Angular Front End-->
-            <a class=" text-center navbar-left navbar-text " ui-sref="home"><i class="fa fa-home"></i> HOME</a>
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a ui-sref="home" style="font-size: large"><i class="fa fa-home"></i><b> Home</b> </a>
+                </li>
+                 <li>
+                     <div>
+                         <form class="navbar-form ">
+                             <div class="input-group">
+                                <span style="-moz-border-radius:10px;  /* for Firefox */
+                 -webkit-border-radius:10px; /* for Webkit-Browsers */
+                 border-radius:10px; /* regular */
+                 opacity:0.5;"> <input type="text" class="form-control" ng-model="searchInput"
+                                       placeholder="Search Youtube">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-default" ng-click="search(searchInput)">
+                                         <i class="glyphicon glyphicon-search"></i>
+                                     </button>
+                                 </div>
+                                    </span>
+                             </div>
+                         </form>
+                     </div>
+                 </li>
+
+
+            </ul>
+            <!--<li>
+                <a  ui-sref="home" style="font-size: large"><i class="fa fa-home"></i> Home</a>
+            </li>-->
+            <!--
+                        <a class=" text-center navbar-left navbar-text " ui-sref="home"><i class="fa fa-home"></i> HOME</a>
+            -->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-
                 <!--<li>
-                    <div>
-                        &lt;!&ndash; <google-plus-signin
-                                 clientid="1092909644467-gegh4tedbru8abno15kkhr6u4ea8tfco.apps.googleusercontent.com"
-                                 autorender="false"
-                                 customtargetid="googleButton">
-                             <div id="">
-                                 <a id="googleButton"   class="btn btn-block btn-social btn-pinterest"><i
-                                         class="fa fa-google"></i>Google</a>
-                             </div>
-                         </google-plus-signin>&ndash;&gt;
+                    <div id="wrap">
+                        <form action="" autocomplete="on">
+                            <input id="search" name="search" type="text" placeholder="Search Youtube here"><input
+                                >
+                        </form>
                     </div>
-
                 </li>-->
-
                 <li>
-                    <a ui-sref="playlists">Playlists</a>
+                    <a ui-sref="playlists" style="font-size: large"><i class="fa fa-music"></i> Playlists</a>
                 </li>
                 <li class="dropdown" ng-hide="hideLoginButton">
-                    <a class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span
+                    <a class="dropdown-toggle" data-toggle="dropdown" style="font-size: large"><i
+                            class="fa fa-sign-in"></i> Login <span
                             class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
@@ -87,10 +111,10 @@
                     </ul>
                 </li>
                 <li class="dropdown" ng-hide="!hideLoginButton">
-                    <a type="button" class="dropdown-toggle" data-toggle="dropdown">
-                        <div><img class="img-circle" style="height: 40px" ng-src="{{user.imageUrl}}"
-                                  alt="User image">
-                            {{user.name}}
+                    <a type="button" class="dropdown-toggle" data-toggle="dropdown" style="padding: 5px;">
+                        <div class=""><img class="img-circle" style="height: 40px" ng-src="{{user.imageUrl}}"
+                                           alt="User image">
+                            {{user.name.split(" ")[0]}}
 
 
                             <span class="caret"></span></div>
@@ -106,10 +130,10 @@
                                     </div>
                                     <div class="col-md-8">
                                         <p class="text-left large"><strong>{{user.name}}</strong></p>
-                                        <p class="text-left small">{{user.email}}</p>
+                                        <p class="text-left small"><code>{{user.email}}</code></p>
                                         <p class="text-left">
                                             <button style="width:80%;" ng-click="signOut()"
-                                                    class="btn btn-primary btn-sm">Logout
+                                                    class="btn btn-primary btn-sm"><i class="fa fa-icon-off"></i>Logout
                                             </button>
                                         </p>
                                     </div>
@@ -144,57 +168,7 @@
                         </li>-->
                     </ul>
                 </li>
-                <!--<li ng-hide="hideLoginButton">
-                    <script src="https://apis.google.com/js/platform.js" async defer></script>
-                    <meta name="google-signin-client_id"
-                          content="1092909644467-gegh4tedbru8abno15kkhr6u4ea8tfco.apps.googleusercontent.com">
 
-                    <div class="g-signin2 " data-onsuccess="onSignIn" ng-click="signIn()"></div>
-
-                </li>-->
-                <!-- <li ng-hide="!hideLoginButton">
-
-
-                     <div>
-                         <a type="button" class=""
-                            ng-click="signOut()"><img class="img-circle" style="height: 40px" ng-src="{{user.imageUrl}}"
-                                                      alt="Circle image">
-                             Logout
-                         </a>
-
-                         &lt;!&ndash; Modal &ndash;&gt;
-                         &lt;!&ndash; <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
-                               aria-labelledby="exampleModal3Label"
-                               aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
-                                      <div class="modal-header">
-                                          <h5 class="modal-title">LOGIN
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>`
-                                              </button>
-                                          </h5>
-                                      </div>
-                                      <div class="modal-body">
-                                          <a class="btn btn-block btn-social btn-google g-signin2"
-                                             data-onsuccess="onSignIn"
-                                             ng-click="loginGoogle()">
-                                              <span class="fa fa-google"></span> Sign in with Google
-                                          </a>
-                                      </div>
-                                      &lt;!&ndash;<div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                      </div>&ndash;&gt;
-                                  </div>
-                              </div>
-                          </div>&ndash;&gt;
-                     </div>
-                 </li>-->
-                <!--  <li>
-                      <a ng-controller="logoutCtrl" ng-hide="hideLogout" ng-click="logOut()">Logout</a>
-                      <a ng-controller="logoutCtrl" ng-hide="hideLogin" ng-click="login()">Login</a>
-                  </li>-->
             </ul>
         </div>
     </div>

@@ -1,0 +1,106 @@
+<div class="container" ng-controller="searchCtrl">
+
+    <!--<div class="row">
+
+        <div class="text-uppercase text-center"><h3>{{playlistName}}</h3></div>
+        <hr class="my-2">
+        <div class="text-center ">
+
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#playAllModal" ng-click="playAllButton()">Play ALL <span
+                    class="btn-separator"></span>
+                <i class="fa fa-play"></i>
+            </button>
+            <button type="button" class="btn btn-success" data-toggle="modal"
+                    data-target="#playAllModal" ng-click="shuffleAllButton()">Shuffle ALL <span
+                    class="btn-separator"></span><i class="fa fa-random"></i>
+            </button>
+            <button type="button" class="btn btn-danger"
+                    data-target="#playAllModal" ng-click="deletePlaylistButton()">Delete <span
+                    class="btn-separator"></span>
+                <i class="fa fa-remove"></i>
+            </button>
+        </div>
+    </div>
+    <br>
+    &lt;!&ndash; Modal &ndash;&gt;
+    <div class="modal fade" id="playAllModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModal3Label"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Play SONGS
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="reload">
+                            <span aria-hidden="true">&times;</span>`
+                        </button>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="embed-responsive embed-responsive-16by9 ">
+                        <iframe class="embed-responsive-item" ng-src="{{trustUrl(playAllUrl)}}" allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                &lt;!&ndash;<div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>&ndash;&gt;
+            </div>
+        </div>
+    </div>
+
+</div>
+-->
+    <!--
+    <div class="input-group">
+
+        <input ng-model="songUrl" type="text" class="form-control"
+               placeholder="Add youtube url to add song to playlist"
+               ng-keypress="($event.keyCode === 13)?addSong():console.log('Press Enter key to add song')">
+        <span class="input-group-btn">
+        <button class="btn btn-warning" type="button" ng-click="addSong()">Add Song</button>
+      </span>
+    </div>
+    <br>
+    -->
+
+    <div class="row" style="overflow: hidden">
+        <div class="col-sm-6 col-md-4 " ng-repeat="song in searchInfo track by $index">
+
+            <div class="thumbnail text-center well well-sm">
+
+                <div class="embed-responsive embed-responsive-4by3 ">
+                    <iframe class="embed-responsive-item" ng-src="{{trustUrl(song.id)}}" allowfullscreen></iframe>
+                </div>
+
+                <div class="caption">
+
+                    <!-- <script>$(function () {
+                         $('[data-toggle="popover"]').popover()
+                     });</script>-->
+                    <!--<h3>{{title[$index]}}</h3>-->
+                    <p>
+
+                        <button tabindex="0" class="btn btn-info col-md-10" role="button"
+                                data-toggle="popover" data-placement="top" data-trigger="focus"
+                                title="{{''+song.title}}"
+                                ng-click="getSongDetails(song)"
+                                data-content="{{details[$index]}}"
+                                style="overflow: hidden">
+                            {{song.title }}
+                        </button>
+                        <button type="button" ng-click="addSong(song.id)" class="btn pull-right btn-success"
+                                ng-show="searchFromAddState"><i
+                                class="fa fa-plus"></i></button>
+                        <button type="button" ng-click="copy(song.id)" class="btn pull-right btn-warning"
+                                ng-show="!searchFromAddState"><i
+                                class="fa fa-clone"></i></button>
+
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

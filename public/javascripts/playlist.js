@@ -13,7 +13,6 @@ app.controller('playlistCtrl',
         $scope.playAllButton = function () {
             refreshPlaylist();
             $scope.playAllUrl = $scope.songs[0] + "?playlist=";
-
             for (id in $scope.songs) {
                 if (id > 0)
                     $scope.playAllUrl += $scope.songs[id] + ',';
@@ -23,21 +22,6 @@ app.controller('playlistCtrl',
         };
         $scope.shuffleAllButton = function () {
             refreshPlaylist();
-            function shuffle(array) {
-                var copy = [], n = array.length, i;
-
-                // While there remain elements to shuffle…
-                while (n) {
-
-                    // Pick a remaining element…
-                    i = Math.floor(Math.random() * n--);
-                    // And move it to the new array.
-                    copy.push(array.splice(i, 1)[0]);
-                }
-
-                return copy;
-            }
-
             var shuffledPlaylist = shuffle($scope.songs);
             $scope.playAllUrl = shuffledPlaylist[0] + "?playlist=";
 
@@ -120,12 +104,6 @@ app.controller('playlistCtrl',
              $scope.songUrl = "";
              }
              */
-            if ($scope.songs.includes(link)) {
-                console.log('Already exists');
-                $scope.songUrl="";
-            }
-           else {
-
             if ($scope.songUrl !== null && $scope.songUrl !== '') {
                 $http({
                     method: 'POST',
@@ -142,7 +120,7 @@ app.controller('playlistCtrl',
             } else {
                 // myService.toast("Kuch toh daal gadhe");
             }
-        }
+
 
         };
         $scope.deleteSong = function (song) {
@@ -182,3 +160,18 @@ app.controller('playlistCtrl',
             //return song;
         }
     }]);
+
+function shuffle(array) {
+    var copy = [], n = array.length, i;
+
+    // While there remain elements to shuffle…
+    while (n) {
+
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * n--);
+        // And move it to the new array.
+        copy.push(array.splice(i, 1)[0]);
+    }
+
+    return copy;
+}

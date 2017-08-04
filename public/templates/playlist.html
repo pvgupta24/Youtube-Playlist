@@ -35,8 +35,8 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">LOGIN
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title text-center">Play SONGS
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="reload">
                                 <span aria-hidden="true">&times;</span>`
                             </button>
                         </h5>
@@ -84,20 +84,14 @@
                     <!--<h3>{{title[$index]}}</h3>-->
                     <p>
 
-                        <button tabindex="0" class="btn btn-info" role="button"
+                        <button tabindex="0" class="btn btn-info col-md-10" role="button"
                                 data-toggle="popover" data-placement="top" data-trigger="focus"
                                 title="{{''+title[$index]}}"
                                 ng-click="getSongDetails(song)"
-                                data-content="{{details[$index]}}">
+                                data-content="{{details[$index]}}" style="overflow: hidden">
                             {{title[$index] }}
                         </button>
-
-                        <!--
-                        <button ng-click="songDescription =! songDescription;getSongDetails(song)"  class="btn btn-success">Description</button>
-
-                        <span ng-show="songDescription">{{details[$index]}}</span>-->
-
-                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger  "><i
+                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger pull-right " title="Delete Song"><i
                                 class="fa fa-trash-o"></i></button>
 
 

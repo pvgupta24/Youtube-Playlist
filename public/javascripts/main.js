@@ -22,6 +22,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             {
                 url: '/playlist',
                 templateUrl: './templates/playlist.html'
+            })
+        .state('search',
+            {
+                url:'/search',
+                templateUrl:'./templates/search.html'
             });
 });
 

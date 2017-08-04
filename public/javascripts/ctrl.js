@@ -1,6 +1,26 @@
 /**
  * Created by Praveen Gupta on 19-07-2017.
  */
+app.controller('searchCtrl', ['$sessionStorage', '$scope', '$sce', '$http', function ($sessionStorage, $scope, $sce, $http) {
+    $scope.trustUrl = function (url) {
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
+    };
+    $scope.searchInfo = $sessionStorage.searchInfo;
+    $scope.searchFromAddState = $sessionStorage.searchFromAddState;
+    $scope.addSong = function (id) {
+        $http({
+            method: 'POST',
+            url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
+            data: {song: id}
+        }).then(function success(res) {
+            //myService.toast("Added");
+            //$scope.songUrl = "";
+            // refreshPlaylist();
+        }, function fail() {
+            console.log('yooo');
+        });
+    }
+}]);
 
 app.controller('homeCtrl',
     ['$sessionStorage', '$http', '$scope', '$state', function ($sessionStorage, $http, $scope, $state) {
@@ -9,10 +29,7 @@ app.controller('homeCtrl',
             $state.go('playlist');
         };
 
-        /*var url = '/api/playlists/public';
-         if ($sessionStorage.user.loggedIn) {
-         url = '/api/playlists/' + $sessionStorage.user.email + '/orPublic';
-         }*/
+
 
         $http(
             {
@@ -20,8 +37,21 @@ app.controller('homeCtrl',
                 url: '/api/playlists'
             }).then(function success(res) {
             console.log('Success mei ghusa');
-            console.log(res);
+           // console.log(res);
             $scope.playlists = res.data;
+            $scope.imageUrl=[];
+            for(i in $scope.playlists){
+                $http({
+                    method: 'GET',
+                    url: 'http://picasaweb.google.com/data/entry/api/user/' + $scope.playlists[i].email + '?alt=json'
+                }).then(function (res) {
+                    //console.log(res);
+                     $scope.imageUrl.push(res.data.entry.gphoto$thumbnail.$t);
+                     console.log($scope.imageUrl[i]);
+                }, function fail() {
+                    console.log('Could not load Image');
+                });
+            }
         }, function fail(err) {
             console.log(err);
         });
@@ -33,21 +63,49 @@ app.controller('homeCtrl',
 
     }]);
 
-app.controller('loginCtrl',
-    ['$scope', '$window', '$sessionStorage', '$state', function ($scope, $window, $sessionStorage, $state) {
-        //$scope.hideLoginButton=$sessionStorage.user.loggedIn;
-        /*if ($sessionStorage.user.loggedIn)
-         $scope.user=$sessionStorage.user;*/
+app.controller('headerCtrl',
+    ['$scope', '$window', '$sessionStorage', '$state', '$http', function ($scope, $window, $sessionStorage, $state, $http) {
+        if ($sessionStorage.searchInfo === undefined)
+            $sessionStorage.searchInfo = [];
+        $scope.search = function (searchInput) {
+            if (searchInput !== "" && searchInput !== undefined) {
+                $http({
+                    method: 'GET',
+                    url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchInput + '&maxResults=12&order=viewCount&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY'
+                }).then(function success(res) {
+                    console.log("searching for request");
+                    console.log(res.data.items);
+                    $sessionStorage.searchInfo = [];
+                    $sessionStorage.searchFromAddState = ($state.current.name === 'playlist');
+                    for (i in res.data.items) {
+                        if (res.data.items[i].id.videoId !== undefined) {
+                            $sessionStorage.searchInfo.push({
+                                id: res.data.items[i].id.videoId,
+                                title: res.data.items[i].snippet.title
+                            })
+                        }
+                    }
+                    if ($state.current.name === 'search')
+                        $state.reload();
+                    else
+                        $state.go('search');
+
+
+                }, function fail() {
+                    console.log('failed to search');
+                });
+            }
+        };
+        if ($sessionStorage.user === undefined)
+            $sessionStorage.user = {};
         if ($sessionStorage.user.loggedIn === true)
             $scope.user = $sessionStorage.user;
         else {
             $scope.user = {};
             $scope.user.loggedIn = false;
         }
-
-
         $scope.hideLoginButton = $scope.user.loggedIn;
-        console.log($sessionStorage.user.loggedIn);
+        // console.log($sessionStorage.user.loggedIn);
         $scope.$on('event:google-plus-signin-success', function (event, authResult) {
             // Send login to server or save into cookie
             //console.log(authResult.w3);
@@ -88,20 +146,20 @@ app.controller('loginCtrl',
                 $state.reload();
             });
         };
-        $scope.signIn = function () {
-            //console.log('yoooooooo' + $window.profile.getEmail());
-            /* $sessionStorage.user = {
-             loggedIn: true,
-             id: $window.profile.getId(),
-             name: $window.profile.getName(),
-             imageUrl: $window.profile.getImageUrl(),
-             email: $window.profile.getEmail()
-             };*/
-            // $sessionStorage.user = $window.user;
-            //  console.log($sessionStorage.user);
-            //$scope.user = $window.user;
-            //$scope.hideLoginButton = true;
-        };
+        /*      $scope.signIn = function () {
+         //console.log('yoooooooo' + $window.profile.getEmail());
+         /!* $sessionStorage.user = {
+         loggedIn: true,
+         id: $window.profile.getId(),
+         name: $window.profile.getName(),
+         imageUrl: $window.profile.getImageUrl(),
+         email: $window.profile.getEmail()
+         };*!/
+         // $sessionStorage.user = $window.user;
+         //  console.log($sessionStorage.user);
+         //$scope.user = $window.user;
+         //$scope.hideLoginButton = true;
+         };*/
     }]);
 /*
  var profile, user;

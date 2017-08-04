@@ -76,7 +76,7 @@ router.route("/:playlist").get(function (req, res) {
 //Adds a new song to the playlist
 router.route("/:playlist").post(function (req, res) {
     Playlist.findOneAndUpdate({name: req.params.playlist},
-        {$push: {songs: req.body.song}},
+        {$addToSet: {songs: req.body.song}},
         function (err, playlist) {
             if (err) {
                 res.send(err);

@@ -1,9 +1,9 @@
 <div ng-controller="playlistsCtrl">
     <div>
         <div class="text-center">
-            <button type="button" class="btn btn-primary" style="width:50%;" data-toggle="modal"
+            <button type="button" class="btn btn-lg btn-primary" style="width:50%;" data-toggle="modal"
                     data-target="#addplaylist">
-            Add New Playlist
+                <i class="fa fa-add"></i>Add New Playlist
             </button>
         </div>
         <br>
@@ -23,24 +23,20 @@
 
 
                         <div class="input-group container">
-
+                            <div class="text-center">
                             <input ng-model="newPlaylistDetails.playlistName" type="text" class="form-control"
-                                   placeholder="Playlist Name" style="width: 50%">
+                                   placeholder="Playlist Name" style="width: 40%"></div>
                             <br>
-
                             <br>
-
                             <!--Toggle switch-->
                             <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css"
                                   rel="stylesheet">
                             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-                            <div>
+                            <div ng-init="newPlaylistDetails.publicCheckBox=true;"
+                                 ng-click="newPlaylistDetails.publicCheckBox=!newPlaylistDetails.publicCheckBox;">
                                 <input type="checkbox" data-toggle="toggle"
-                                       class="form-control mr-auto" data-on="Public"
+                                       class="form-control mr-auto" data-on="Public" checked
                                        data-width="10%" data-off="Private" data-offstyle="success"
-                                       checked
-                                       ng-checked=""
-                                       ng-click="newPlaylistDetails.publicCheckBox=!newPlaylistDetails.publicCheckBox"
                                        data-style="slow"
                                        style="transition: left 0.7s; -webkit-transition: left 0.7s; ">
                             </div>
@@ -67,10 +63,9 @@
              ng-click="openPlaylist(playlist.name)">
             <div class="thumbnail text-center well well-sm">
 
-                <!--  <div class="embed-responsive embed-responsive-4by3 ">
-                      <iframe class="embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
+                  <div class="embed-responsive embed-responsive-4by3 ">
+                      <iframe class="embed-responsive-item" ng-src="{{getPlayAllUrl(playlist.songs)}}" allowfullscreen></iframe>
                   </div>
--->
                 <div class="caption text-capitalize">
                     <h3>{{playlist.name}}</h3>
                     <p>

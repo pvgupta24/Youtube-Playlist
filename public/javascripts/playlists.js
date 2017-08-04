@@ -3,9 +3,11 @@
  */
 
 app.controller('playlistsCtrl',
-    ['$scope', '$http', '$state', '$sessionStorage', function ($scope, $http, $state, $sessionStorage) {
-         $scope.newPlaylistDetails = {};
-        $scope.newPlaylistDetails.publicCheckBox=true;
+    ['$scope', '$http', '$state', '$sessionStorage','$sce', function ($scope, $http, $state, $sessionStorage,$sce) {
+        $scope.newPlaylistDetails = {};
+$scope.reload=function () {
+    $state.reload();
+};
         var refresh = function () {
             $http({
                 method: 'GET',
@@ -22,6 +24,21 @@ app.controller('playlistsCtrl',
         $scope.openPlaylist = function (name) {
             $sessionStorage.currentPlaylistName = name;
             $state.go('playlist');
+        };
+        $scope.getPlayAllUrl=function (songs) {
+           // console.log(songs);
+            var shuffledPlaylist = (songs);
+            //console.log(shuffledPlaylist);
+
+             var url = shuffledPlaylist[0] + "?playlist=";
+
+            for (id in shuffledPlaylist) {
+                if (id > 0)
+                    url += shuffledPlaylist[id] + ',';
+            }
+            url.slice(0, -1);
+            console.log(url);
+            return $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + url+'&cc_load_policy=1');
         };
         $scope.addPlaylist = function () {
 
