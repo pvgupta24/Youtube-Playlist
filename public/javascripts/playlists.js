@@ -6,6 +6,7 @@ app.controller('playlistsCtrl',
     ['$scope', '$http', '$state', '$sessionStorage', '$sce', '$rootScope',
         function ($scope, $http, $state, $sessionStorage, $sce, $rootScope) {
             $scope.newPlaylistDetails = {};
+            $scope.user=$sessionStorage.user;
             $scope.reload = function () {
                 $state.reload();
             };
@@ -72,6 +73,7 @@ app.controller('playlistsCtrl',
                     });
                 }
                 else {
+                    $rootScope.toast("Login to add playlist !",800);
                     console.log('Login First bro!');
                 }
             }
