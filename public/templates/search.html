@@ -94,7 +94,8 @@
                                 ng-show="searchFromAddState"><i
                                 class="fa fa-plus"></i></button>
                         <button type="button" ng-click="copy(song.id)" class="btn pull-right btn-warning"
-                                ng-show="!searchFromAddState"><i
+                                ng-show="!searchFromAddState" ngclipboard
+                                data-clipboard-text="{{"a"}}"><i
                                 class="fa fa-clone"></i></button>
 
                         <br>

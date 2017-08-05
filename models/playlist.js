@@ -8,8 +8,11 @@ var playlistSchema = new Schema(
     {
         name: {type: String, required: true},
         desciption: {type: String},
-        nameOfUser:{type:String,required:true},
-        email: {type: String, required: true},
+        user:{
+            name:{type:String,required:true},
+            email: {type: String, required: true},
+            imageUrl:{type:String}
+        },
         public: {type: Boolean, default: false},
         songs: {type:Array,default:[]},
         created:{type:Date},

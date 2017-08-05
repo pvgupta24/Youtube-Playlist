@@ -17,5 +17,6 @@
     <orderEntry type="library" name="platform" level="application" />
     <orderEntry type="library" name="bootstrap-toggle" level="application" />
     <orderEntry type="library" name="api:client" level="application" />
+    <orderEntry type="library" name="clipboard" level="application" />
   </component>
 </module>

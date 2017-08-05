@@ -34,6 +34,21 @@ router.route("/public").get(function (req, res) {
     });
 });
 
+//Gets all playlists with the given username
+router.route('/:email').get(function (req, res) {
+    Playlist.find({'user.email': req.params.email}, function (err, playlists) {
+        if (err) {
+            console.log("Error:" + err);
+            res.send(err);
+        }
+        else {
+            console.log("Playlists for " + req.params.email + ":\n" + playlists);
+            res.send(playlists);
+        }
+    });
+});
+
+
 //Adds a new playlist
 router.route("/").post(function (req, res) {
     var playlistData = req.body;
@@ -104,20 +119,6 @@ router.route("/:playlist/deleteSong").post(function (req, res) {
 });
 
 
-
-//Gets all playlists with the given username
-router.route('/:email').get(function (req, res) {
-    Playlist.find({email: req.params.email}, function (err, playlists) {
-        if (err) {
-            console.log("Error:" + err);
-            res.send(err);
-        }
-        else {
-            console.log("Playlists for " + req.params.email + ":\n" + playlists);
-            res.send(playlists);
-        }
-    });
-});
 
 //Gets all public playlists plus playlists with the given username
 router.route('/:email/orPublic').get(function (req, res) {

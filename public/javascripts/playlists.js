@@ -11,7 +11,7 @@ $scope.reload=function () {
         var refresh = function () {
             $http({
                 method: 'GET',
-                url: "/api/playlists"
+                url: "/api/playlists/"+$sessionStorage.user.email
             }).then(function success(res) {
                 console.log(res);
                 $scope.playlists = res.data;
@@ -51,8 +51,10 @@ $scope.reload=function () {
                     url: "/api/playlists",
                     data: {
                         name: $scope.newPlaylistDetails.playlistName,
-                        nameOfUser: $sessionStorage.user.name,
-                        email: $sessionStorage.user.email,
+                        user: {name:$sessionStorage.user.name,
+                            email: $sessionStorage.user.email,
+                            imageUrl:$sessionStorage.user.imageUrl
+                        },
                         public: $scope.newPlaylistDetails.publicCheckBox
                     }
                 }).then(function success(res) {

@@ -28,9 +28,8 @@ app.controller('homeCtrl',
             $sessionStorage.currentPlaylistName = name;
             $state.go('playlist');
         };
-
-
-
+        $scope.user=$sessionStorage.user;
+        console.log($scope.user);
         $http(
             {
                 method: 'GET',
@@ -39,19 +38,7 @@ app.controller('homeCtrl',
             console.log('Success mei ghusa');
            // console.log(res);
             $scope.playlists = res.data;
-            $scope.imageUrl=[];
-            for(i in $scope.playlists){
-                $http({
-                    method: 'GET',
-                    url: 'http://picasaweb.google.com/data/entry/api/user/' + $scope.playlists[i].email + '?alt=json'
-                }).then(function (res) {
-                    //console.log(res);
-                     $scope.imageUrl.push(res.data.entry.gphoto$thumbnail.$t);
-                     console.log($scope.imageUrl[i]);
-                }, function fail() {
-                    console.log('Could not load Image');
-                });
-            }
+
         }, function fail(err) {
             console.log(err);
         });

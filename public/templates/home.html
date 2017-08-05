@@ -2,32 +2,47 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-3" ng-repeat="playlist in playlists track by $index">
-                <div  ng-class="playlist.public?'offer offer-primary':'offer offer-success'">
+            <div class="col-md-3" ng-repeat="playlist in playlists track by $index"
+                 ng-style="(playlist.public||playlist.user.email===user.email)?{'cursor': 'pointer'}:{'cursor': 'not-allowed'}"
+                 ng-click="(playlist.public||playlist.user.email===user.email)?openPlaylist(playlist.name):return;">
+                <div ng-class="playlist.public?'offer offer-primary':'offer offer-success'">
                     <div class="shape">
                         <div class="shape-text">
                             {{playlist.public?"Public":"Private"}}
-                        </div><br>
+                        </div>
+                        <br>
                     </div>
 
                     <div class="offer-content">
-                         <h3 class="lead text-capitalize">
+                        <h3 class="lead text-capitalize text-center" style="white-space: nowrap">
                             {{playlist.name}}
-                        </h3>                     <div class="row">
-                        <div class="col-md-4">
-                            <p class="text-center">
-                                <span><img class="img-rounded" ng-src="{{imageUrl[$index]}}" alt="User image"></span>
-                            </p>
-                        </div>
-                        <div class="col-md-8">
-                            <p class="text-left large"><strong>{{playlist.nameOfUser}}</strong></p>
-                            <p class="text-left small"><code>{{playlist.email}}</code></p>
+                        </h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="text-center">
+                                    <img class="img-rounded" height="60px" ng-src="{{playlist.user.imageUrl}}"
+                                         alt="User image">
+                                </p>
+                            </div>
+                            <div class="col-md-8  text-right">
+                                Created by :<br>
+                                {{playlist.user.name}}<br>
+                                <code>
+                                    <small>{{playlist.user.email}}</small>
+                                </code>
 
+                            </div>
                         </div>
-                    </div><hr>
-                        <p class="small"><kbd>
-                           Last Updated  : {{formatDate(playlist.updated)}}</kbd>
-                        </p>
+                        <hr>
+                        <small>
+                            &nbsp;&nbsp;&nbsp;Created on &nbsp;&nbsp;: <kbd>
+                            {{formatDate(playlist.created)}}</kbd>
+                        </small>
+                        <br>
+                        <small>
+                            Last Updated : <kbd>
+                            {{formatDate(playlist.updated)}}</kbd>
+                        </small>
                     </div>
                 </div>
             </div>
@@ -36,121 +51,119 @@
     </div>
 
 
-    <blockquote class="blockquote">
-        <!-- <div class="col-md-8 col-md-offset-2">
-             <div class="panel panel-default">
-                 <div class="panel-body">
-                     <div class="pull-right">
-                         <div class="btn-group">
-                             <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
-                             <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-                             <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-                             <button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
-                         </div>
-                     </div>
-                     <div class="table-container">
-                         <table class="table table-filter">
-                             <tbody>
-
-                             <tr data-status="pendiente">
-                                 <td>
-                                     <div class="ckbox">
-                                         <input type="checkbox" id="checkbox5">
-                                         <label for="checkbox5"></label>
-                                     </div>
-                                 </td>
-                                 <td>
-                                     hmm
-                                 </td>
-                                 <td>
-                                     <div class="media">
-                                         <a href="#" class="pull-left">
-                                             <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
-                                         </a>
-                                         <div class="media-body">
-                                             <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                             <h4 class="title">
-                                                 Lorem Impsum
-                                                 <span class="pull-right pendiente">(Pendiente)</span>
-                                             </h4>
-                                             <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                         </div>
-                                     </div>
-                                 </td>
-                             </tr>
-                             </tbody>
-                         </table>
+    <!-- <div class="col-md-8 col-md-offset-2">
+         <div class="panel panel-default">
+             <div class="panel-body">
+                 <div class="pull-right">
+                     <div class="btn-group">
+                         <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
+                         <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
+                         <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
+                         <button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
                      </div>
                  </div>
+                 <div class="table-container">
+                     <table class="table table-filter">
+                         <tbody>
+
+                         <tr data-status="pendiente">
+                             <td>
+                                 <div class="ckbox">
+                                     <input type="checkbox" id="checkbox5">
+                                     <label for="checkbox5"></label>
+                                 </div>
+                             </td>
+                             <td>
+                                 hmm
+                             </td>
+                             <td>
+                                 <div class="media">
+                                     <a href="#" class="pull-left">
+                                         <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                                     </a>
+                                     <div class="media-body">
+                                         <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                         <h4 class="title">
+                                             Lorem Impsum
+                                             <span class="pull-right pendiente">(Pendiente)</span>
+                                         </h4>
+                                         <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
+                                     </div>
+                                 </div>
+                             </td>
+                         </tr>
+                         </tbody>
+                     </table>
+                 </div>
              </div>
- -->
+         </div>
+-->
 
-        <!--
+    <!--
 
-            <div>
-                <table class="custom-table table table-hover table-striped ">
-                    <thead class="thead thead-inverse">
+        <div>
+            <table class="custom-table table table-hover table-striped ">
+                <thead class="thead thead-inverse">
 
-                    <tr class="customThead">
-                        <th class="text-center">#</th>
-                        <th class="text-center">Playlist Name</th>
-                        <th class="text-center">Visibility</th>
-                        <th class="text-center">Songs</th>
-                        <th class="text-center">Created by</th>
-                        <th class="text-center">Created on</th>
-                        <th class="text-center">Updated on</th>
-                    </tr>
-                    </thead>
-                    <tbody class="" style="cursor: pointer">
+                <tr class="customThead">
+                    <th class="text-center">#</th>
+                    <th class="text-center">Playlist Name</th>
+                    <th class="text-center">Visibility</th>
+                    <th class="text-center">Songs</th>
+                    <th class="text-center">Created by</th>
+                    <th class="text-center">Created on</th>
+                    <th class="text-center">Updated on</th>
+                </tr>
+                </thead>
+                <tbody class="" style="cursor: pointer">
 
-                    <tr ng-repeat="playlist in playlists|filter:search" ng-click="openPlaylist(playlist.name)">
-                        <th scope="row">{{1+$index}}</th>
-                        <td class="text-capitalize"><b>{{playlist.name}}</b></td>
-                        <td><span ng-class="playlist.public?'label label-primary':'label label-success'">
-                                {{playlist.public?"public":"private"}}</span></td>
-                        <td class="text-capitalize ">{{playlist.songs.length}}</td>
-                        <td class="text-capitalize">{{playlist.nameOfUser}}</td>
-                        <td class="text-capitalize">{{formatDate(playlist.created)}}</td>
-                        <td class="text-capitalize">{{formatDate(playlist.updated)}}</td>
-                    </tr>
-                    </tbody>
+                <tr ng-repeat="playlist in playlists|filter:search" >
+                    <th scope="row">{{1+$index}}</th>
+                    <td class="text-capitalize"><b>{{playlist.name}}</b></td>
+                    <td><span ng-class="playlist.public?'label label-primary':'label label-success'">
+                            {{playlist.public?"public":"private"}}</span></td>
+                    <td class="text-capitalize ">{{playlist.songs.length}}</td>
+                    <td class="text-capitalize">{{playlist.nameOfUser}}</td>
+                    <td class="text-capitalize">{{formatDate(playlist.created)}}</td>
+                    <td class="text-capitalize">{{formatDate(playlist.updated)}}</td>
+                </tr>
+                </tbody>
 
-                </table>
-            </div>
-    -->
+            </table>
+        </div>
+-->
 
 
-        <!--<div class="">
-            <div class="row" id="a" ng-repeat="playlist in playlists|filter:search" style="width: 50%">
+    <!--<div class="">
+        <div class="row" id="a" ng-repeat="playlist in playlists|filter:search" style="width: 50%">
 
-                <div class="" >
-                    <div class="panel-group">
-                        <div class="panel card-blockquote panel-default">
-                            <a class="panel-default" data-toggle="collapse" data-parent="a" target="_self"
-                               href="{{'#collapse'+$index}}">
-                                <div class="panel-heading text-capitalize col-md-12">
-                                    <h2 class="panel-title">
-                                        {{playlist.name}}
+            <div class="" >
+                <div class="panel-group">
+                    <div class="panel card-blockquote panel-default">
+                        <a class="panel-default" data-toggle="collapse" data-parent="a" target="_self"
+                           href="{{'#collapse'+$index}}">
+                            <div class="panel-heading text-capitalize col-md-12">
+                                <h2 class="panel-title">
+                                    {{playlist.name}}
 
-                                    <span class="right" ng-class="playlist.public?'label label-primary':'label label-success'">
-                                {{playlist.public?"public":"private"}}</span></h2>
-                                </div>
-                            </a>
-                            <div id="{{'collapse'+$index}}" class="panel-collapse collapse">
-                                <div class="panel-body text-justify ">
-                                    <blockquote>"{{playlist.public}}"<br>
-                                        <a ui-sref="users" ng-click=""> <cite>-
-                                            {{''}}</cite></a>
-                                    </blockquote>
-                                </div>
+                                <span class="right" ng-class="playlist.public?'label label-primary':'label label-success'">
+                            {{playlist.public?"public":"private"}}</span></h2>
+                            </div>
+                        </a>
+                        <div id="{{'collapse'+$index}}" class="panel-collapse collapse">
+                            <div class="panel-body text-justify ">
+                                <blockquote>"{{playlist.public}}"<br>
+                                    <a ui-sref="users" ng-click=""> <cite>-
+                                        {{''}}</cite></a>
+                                </blockquote>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>-->
+
+        </div>
+    </div>-->
 
 
-    </blockquote>
 </div>

@@ -17,8 +17,8 @@ footer {
     clear: both;
     position: relative;
     text-align: center;
-    background-color: #3c3d41;
-    color: white;
+    background-color: rgba(123, 130, 134, 0.6);
+    color: bisque;
     padding-top: 30px;
     /*width: 100%;*/
     bottom: -3em;
