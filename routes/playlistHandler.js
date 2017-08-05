@@ -33,9 +33,8 @@ router.route("/public").get(function (req, res) {
         }
     });
 });
-
 //Gets all playlists with the given username
-router.route('/:email').get(function (req, res) {
+router.route('/email/:email').get(function (req, res) {
     Playlist.find({'user.email': req.params.email}, function (err, playlists) {
         if (err) {
             console.log("Error:" + err);
@@ -47,6 +46,21 @@ router.route('/:email').get(function (req, res) {
         }
     });
 });
+//Displays playlist information including list of songs
+router.route("/playlist/:playlist").get(function (req, res) {
+    Playlist.findOne({name: req.params.playlist}, function (err, playlist) {
+        if (err) {
+            console.log("Error:" + err);
+            res.send(err);
+        }
+        else {
+            console.log(req.params.playlist + 'information :\n' + playlist);
+            res.send(playlist);
+        }
+    })
+});
+
+
 
 
 //Adds a new playlist
@@ -74,19 +88,6 @@ router.route("/:playlist/delete").post(function (req, res) {
     });
 });
 
-//Displays playlist information including list of songs
-router.route("/:playlist").get(function (req, res) {
-    Playlist.findOne({name: req.params.playlist}, function (err, playlist) {
-        if (err) {
-            console.log("Error:" + err);
-            res.send(err);
-        }
-        else {
-            console.log(req.params.playlist + 'information :\n' + playlist);
-            res.send(playlist);
-        }
-    })
-});
 
 //Adds a new song to the playlist
 router.route("/:playlist").post(function (req, res) {

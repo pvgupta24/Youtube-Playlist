@@ -99,7 +99,6 @@ a {
     /* padding: 10px;*/
     background-color: transparent;
 
-    top: 0;
 }
 
 /*.table-striped tbody tr:nth-child(even) {
@@ -111,7 +110,7 @@ a {
 }*/
 
 .nav > li > a:hover, .nav > li > a:focus {
-    background-color: #5e869f;
+    background-color: rgba(56, 125, 211, 0.52);
     text-decoration: none;
 }
 
@@ -364,7 +363,7 @@ input[type="text"] {
     transition: width 0.18s linear 0.18s;
 }
 #searchBox:focus {
-    width: 500px;
+    width: 700px;
 }
 
 

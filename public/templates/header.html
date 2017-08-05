@@ -12,7 +12,7 @@
             <!--Angular Front End-->
             <ul class="nav navbar-nav navbar-left">
                 <li>
-                    <a ui-sref="home" style="font-size: large"><i class="fa fa-home"></i><b> Home</b> </a>
+                    <a ui-sref="home" style="font-size: large"><i class="fa fa-home fa-lg"></i><b> Home</b> </a>
                 </li>
                 <!-- <li>
                      <div>
@@ -70,18 +70,20 @@
                                    ng-model="searchInput"
                                    placeholder="Search Youtube Videos"
                                    ng-keypress="($event.keyCode === 13)?search(searchInput):console.log('Kuch oh daal bey')">
-                            <a type="button" ng-click="search(searchInput)"><i class="fa fa-search"></i> </a>
+                            <a type="button" ng-click="search(searchInput)"><i class="fa fa-search fa-lg"></i> </a>
                         </div>
 
                     </form>
 
                 </li>
                 <li>
-                    <a ui-sref="playlists" style="font-size: large"><i class="fa fa-music faa-pulse animated"></i> My
+                    <a ui-sref="playlists" style="font-size: large;padding-left: 15px"><i
+                            class="fa fa-music faa-pulse animated fa-lg"></i> My
                         Playlists</a>
                 </li>
                 <li class="dropdown" ng-hide="hideLoginButton">
-                    <a class="dropdown-toggle" data-toggle="dropdown" style="font-size: large"><i
+                    <a class="dropdown-toggle" data-toggle="dropdown"
+                       style="font-size: large; padding-left: 15px;padding-right: 15px"><i
                             class="fa fa-sign-in faa-passing animated"></i> Login <span
                             class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
@@ -135,7 +137,8 @@
                     </ul>
                 </li>
                 <li class="dropdown" ng-hide="!hideLoginButton">
-                    <a type="button" class="dropdown-toggle" data-toggle="dropdown" style="padding: 5px;">
+                    <a type="button" class="dropdown-toggle" data-toggle="dropdown"
+                       style="padding: 5px;padding-left: 15px">
                         <div class=""><img class="img-circle" style="height: 40px" ng-src="{{user.imageUrl}}"
                                            alt="User image">
                             {{user.name.split(" ")[0]}}

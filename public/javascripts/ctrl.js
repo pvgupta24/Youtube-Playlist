@@ -1,7 +1,8 @@
 /**
  * Created by Praveen Gupta on 19-07-2017.
  */
-app.controller('searchCtrl', ['$sessionStorage', '$scope', '$sce', '$http', function ($sessionStorage, $scope, $sce, $http) {
+app.controller('searchCtrl', ['$sessionStorage', '$scope', '$sce', '$http', '$state','$rootScope',
+    function ($sessionStorage, $scope, $sce, $http, $state,$rootScope) {
     $scope.trustUrl = function (url) {
         return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
     };
@@ -13,34 +14,37 @@ app.controller('searchCtrl', ['$sessionStorage', '$scope', '$sce', '$http', func
             url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
             data: {song: id}
         }).then(function success(res) {
-            //myService.toast("Added");
-            //$scope.songUrl = "";
-            // refreshPlaylist();
+            $state.go('playlist');
+            $rootScope.toast("Song added to "+$sessionStorage.currentPlaylistName,1000);
         }, function fail() {
-            console.log('yooo');
+            console.log('Failed bro');
+            $rootScope.toast("Could not add song to "+$sessionStorage.currentPlaylistName+" ,Please try later",1000);
         });
     }
 }]);
 
 app.controller('homeCtrl',
-    ['$sessionStorage', '$http', '$scope', '$state', function ($sessionStorage, $http, $scope, $state) {
+    ['$sessionStorage', '$http', '$scope', '$state','$rootScope', function ($sessionStorage, $http, $scope, $state,$rootScope) {
+
         $scope.openPlaylist = function (name) {
             $sessionStorage.currentPlaylistName = name;
             $state.go('playlist');
+            $rootScope.toast("Loading songs...",1000);
         };
-        $scope.user=$sessionStorage.user;
+        $scope.user = $sessionStorage.user;
         console.log($scope.user);
-        $http(
-            {
+        $http({
                 method: 'GET',
                 url: '/api/playlists'
             }).then(function success(res) {
             console.log('Success mei ghusa');
-           // console.log(res);
+            // console.log(res);
+            $rootScope.toast("Loading playlists...",1000);
             $scope.playlists = res.data;
 
         }, function fail(err) {
             console.log(err);
+            $rootScope.toast("Could not load playlists...",1000);
         });
         $scope.formatDate = function (d) {
             var date = d.split("-");
@@ -51,8 +55,15 @@ app.controller('homeCtrl',
     }]);
 
 app.controller('headerCtrl',
-    ['$scope', '$window', '$sessionStorage', '$state', '$http', function ($scope, $window, $sessionStorage, $state, $http) {
-        if ($sessionStorage.searchInfo === undefined)
+    ['$scope', '$window', '$sessionStorage', '$state', '$http','$rootScope', function ($scope, $window, $sessionStorage, $state, $http,$rootScope) {
+        $rootScope.toast=function (msg,time) {
+            $rootScope.toastMsg = msg;
+            $myToast=$('#myToast');
+            $myToast.modal('show');
+            setTimeout(function() { $myToast.modal('hide'); }, time);
+        };
+
+    if ($sessionStorage.searchInfo === undefined)
             $sessionStorage.searchInfo = [];
         $scope.search = function (searchInput) {
             if (searchInput !== "" && searchInput !== undefined) {
@@ -60,7 +71,8 @@ app.controller('headerCtrl',
                     method: 'GET',
                     url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=' + searchInput + '&maxResults=12&order=viewCount&key=AIzaSyDmD8pa2BTNiwvQ5LD-SNArhLYA1gCVQxY'
                 }).then(function success(res) {
-                    console.log("searching for request");
+                    $rootScope.toast("Searching for songs...",1500);
+                    console.log("searching for song request");
                     console.log(res.data.items);
                     $sessionStorage.searchInfo = [];
                     $sessionStorage.searchFromAddState = ($state.current.name === 'playlist');
@@ -80,6 +92,7 @@ app.controller('headerCtrl',
 
                 }, function fail() {
                     console.log('failed to search');
+                    $rootScope.toast("Could not search song...",1000);
                 });
             }
         };
@@ -105,13 +118,16 @@ app.controller('headerCtrl',
                 email: authResult.w3.U3
             };
             $scope.user = $sessionStorage.user;
-            console.log($scope.user);
+            console.log($scope.user);$state.reload();
             $scope.hideLoginButton = $sessionStorage.user.loggedIn;
 
-            $state.reload();
+
+
+
         });
         $scope.$on('event:google-plus-signin-failure', function (event, authResult) {
             // Auth failure or signout detected
+            $rootScope.toast("Could not Login, Please try again!",1000);
             console.log("Could not LOGIN ....");
             console.log(authResult);
 
@@ -120,6 +136,8 @@ app.controller('headerCtrl',
         $scope.signOut = function () {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
+
+                $rootScope.toast("Signing Out",1000);
                 console.log('User signed out.');
                 $scope.hideLoginButton = false;
                 $sessionStorage.user.loggedIn = false;
@@ -133,20 +151,7 @@ app.controller('headerCtrl',
                 $state.reload();
             });
         };
-        /*      $scope.signIn = function () {
-         //console.log('yoooooooo' + $window.profile.getEmail());
-         /!* $sessionStorage.user = {
-         loggedIn: true,
-         id: $window.profile.getId(),
-         name: $window.profile.getName(),
-         imageUrl: $window.profile.getImageUrl(),
-         email: $window.profile.getEmail()
-         };*!/
-         // $sessionStorage.user = $window.user;
-         //  console.log($sessionStorage.user);
-         //$scope.user = $window.user;
-         //$scope.hideLoginButton = true;
-         };*/
+
     }]);
 /*
  var profile, user;

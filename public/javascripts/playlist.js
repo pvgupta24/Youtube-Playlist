@@ -3,8 +3,8 @@
  */
 
 app.controller('playlistCtrl',
-    ['$state', '$scope', '$sessionStorage', '$http', '$sce', function ($state, $scope, $sessionStorage, $http, $sce) {
-
+    ['$state', '$scope', '$sessionStorage', '$http', '$sce', '$rootScope', function ($state, $scope, $sessionStorage, $http, $sce, $rootScope) {
+        $scope.songs=[];
 
         $scope.trustUrl = function (url) {
             return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
@@ -39,19 +39,20 @@ app.controller('playlistCtrl',
                 method: 'POST',
                 url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/delete'
             }).then(function success(res) {
+                $rootScope.toast("Playlist Deleted",1000);
                 console.log('deleted');
                 console.log(res);
                 $state.go('playlists');
             }, function fail(err) {
                 console.log(err);
+                $rootScope.toast("Could not delete playlist",1000);
             });
 
         };
         var refreshPlaylist = function () {
-
             $http({
                 method: 'GET',
-                url: '/api/playlists/' + $sessionStorage.currentPlaylistName
+                url: '/api/playlists/playlist/' + $sessionStorage.currentPlaylistName
             }).then(function success(res) {
                 console.log(res);
                 $scope.songs = res.data.songs;
@@ -62,63 +63,35 @@ app.controller('playlistCtrl',
         refreshPlaylist();
         $scope.addSong = function () {
 
-            var link = $scope.songUrl;
-            // var id=(link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/));
-            var id = link.split("&")[0];
-            id = id.split("/");
-            id = id.pop().split("=");
-            //console.log(id.pop());
-            link = id.pop();
-            console.log(link);
 
-            /*   if(id!==null) {
-             id = id[1].split("/");
 
-             if (id.length === 2) {
-             //$('#video').show();
-             console.log(id[1]);
-
-             ' + id[1];
-             $scope.songUrl = "";
-             }
-             else if (id.length === 1) {
-             //$('#video').show();
-             console.log(id[0]);
-             link = 'https://www.youtube.com/embed/' + id[0];
-             $scope.songUrl = "";
-             }
-             $http({
-             method: 'POST',
-             url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
-             data: {song: $sce.trustAsResourceUrl(link)}
-             }).then(function success(res) {
-             console.log(res);
-             //$scope.songUrl = '';
-             refreshPlaylist();
-             }, function fail() {
-             console.log('yooo');
-             });
-             }
-             else {
-             console.log("Improper URL");
-             $scope.songUrl = "";
-             }
-             */
-            if ($scope.songUrl !== null && $scope.songUrl !== '') {
+            if ($scope.songUrl !== undefined && $scope.songUrl !== '') {
+                var link = $scope.songUrl;
+                // var id=(link.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/));
+                var id = link.split("&")[0];
+                id = id.split("/");
+                id = id.pop().split("=");
+                //console.log(id.pop());
+                link = id.pop();
+                console.log(link);
                 $http({
                     method: 'POST',
                     url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
                     data: {song: link}
                 }).then(function success(res) {
                     //myService.toast("Added");
+                    $rootScope.toast("Song added",1000);
                     $scope.songUrl = "";
                     refreshPlaylist();
                 }, function fail() {
-                    console.log('yooo');
+                    console.log('Could not add song');
+                    $rootScope.toast("Could not add song. Input proper URL",1000);
                 });
 
             } else {
-                // myService.toast("Kuch toh daal gadhe");
+
+                $rootScope.toast("Add URL to add a Song",1000);
+                console.log("Add URL to song");
             }
 
 
@@ -130,9 +103,11 @@ app.controller('playlistCtrl',
                 url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/deleteSong',
                 data: {song: song}
             }).then(function () {
+                $rootScope.toast("Song deleted",1000);
                 refreshPlaylist();
             }, function () {
-                console.log('delete nhi hua');
+                $rootScope.toast("Could not delete song...",1000);
+                console.log('Could not delete');
             });
 
             $state.reload();

@@ -3,7 +3,7 @@
  */
 
 app.controller('playlistsCtrl',
-    ['$scope', '$http', '$state', '$sessionStorage','$sce', function ($scope, $http, $state, $sessionStorage,$sce) {
+    ['$scope', '$http', '$state', '$sessionStorage','$sce','$rootScope', function ($scope, $http, $state, $sessionStorage,$sce,$rootScope) {
         $scope.newPlaylistDetails = {};
 $scope.reload=function () {
     $state.reload();
@@ -11,8 +11,9 @@ $scope.reload=function () {
         var refresh = function () {
             $http({
                 method: 'GET',
-                url: "/api/playlists/"+$sessionStorage.user.email
+                url: "/api/playlists/email/"+$sessionStorage.user.email
             }).then(function success(res) {
+
                 console.log(res);
                 $scope.playlists = res.data;
             }, function fail() {
@@ -22,8 +23,10 @@ $scope.reload=function () {
         // $scope.newPlaylistDetails={publicCheckBox:false};
 
         $scope.openPlaylist = function (name) {
+
             $sessionStorage.currentPlaylistName = name;
             $state.go('playlist');
+            $rootScope.toast("Opening your playlist...",1000);
         };
         $scope.getPlayAllUrl=function (songs) {
            // console.log(songs);

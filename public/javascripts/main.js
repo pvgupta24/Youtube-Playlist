@@ -2,7 +2,7 @@
  * Created by Praveen Gupta on 19-07-2017.
  */
 
-var app = angular.module('youtubePlaylist', ['ui.router', 'ngStorage', 'directive.g+signin','ngclipboard']);
+var app = angular.module('youtubePlaylist', ['ui.router', 'ngStorage','ngClickCopy', 'directive.g+signin','angular-loading-bar']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/home');

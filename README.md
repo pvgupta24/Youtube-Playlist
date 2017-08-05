@@ -13,3 +13,5 @@ GET->     /api/playlists/public                 Gets all public playlists<br>
 GET->     /api/playlists/USERNAME               Gets all playlists with the given USERNAME<br>
 GET->     /api/playlists/USERNAME /orPublic     Gets all public playlists plus playlists with the given USERNAME<br>
 
+
+

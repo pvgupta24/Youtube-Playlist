@@ -18,5 +18,7 @@
     <orderEntry type="library" name="bootstrap-toggle" level="application" />
     <orderEntry type="library" name="api:client" level="application" />
     <orderEntry type="library" name="clipboard" level="application" />
+    <orderEntry type="library" name="ngClickCopy" level="application" />
+    <orderEntry type="library" name="loading-bar" level="application" />
   </component>
 </module>

@@ -1,8 +1,15 @@
 <div class="text-center" ng-controller="homeCtrl">
     <div class="container">
+
+        <div class="form-group form-inline">
+            <input autocomplete="off" type="text" id="searchBox" class="form-control"
+                   ng-model="search"
+                   placeholder="Filter playlists">
+
+        </div>
         <div class="row">
 
-            <div class="col-md-3" ng-repeat="playlist in playlists track by $index"
+            <div class="col-md-3" ng-repeat="playlist in playlists | filter:search track by $index"
                  ng-style="(playlist.public||playlist.user.email===user.email)?{'cursor': 'pointer'}:{'cursor': 'not-allowed'}"
                  ng-click="(playlist.public||playlist.user.email===user.email)?openPlaylist(playlist.name):return;">
                 <div ng-class="playlist.public?'offer offer-primary':'offer offer-success'">
