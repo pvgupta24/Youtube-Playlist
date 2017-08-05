@@ -1,18 +1,14 @@
 <div ng-controller="playlistCtrl">
 
-    <!--
-    <button ng-click="getSongDetails('O8fIwHfZz2E')">TESTTTTTTTT</button>
-    -->
     <div class="container">
 
         <div class="row">
 
-            <div class="text-uppercase text-center " style="color: lightsalmon;" ><h4>{{playlistName}}</h4>
+            <div class="text-uppercase text-center " style="color: lightsalmon;"><h4>{{playlistName}}</h4>
                 <hr class="my-2" style="width: 30%">
             </div>
 
             <div class="text-center ">
-
                 <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#playAllModal" ng-click="playAllButton()">Play ALL <span
                         class="btn-separator"></span>
@@ -23,7 +19,8 @@
                         class="btn-separator"></span><i class="fa fa-random"></i>
                 </button>
                 <button type="button" class="btn btn-danger"
-                        data-target="#playAllModal" ng-click="deletePlaylistButton()">Delete <span
+                        data-toggle="modal"
+                        data-target="#deleteModal">Delete <span
                         class="btn-separator"></span>
                     <i class="fa fa-remove"></i>
                 </button>
@@ -38,7 +35,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title text-center">Play SONGS
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="reload">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                    ng-click="reload">
                                 <span aria-hidden="true">&times;</span>`
                             </button>
                         </h5>
@@ -49,10 +47,31 @@
                             </iframe>
                         </div>
                     </div>
-                    <!--<div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <!--Delete Modal-->
+        <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalClass"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete?</p>
+                        <p>There is no turning back</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" ng-click="deletePlaylistButton()"
+                                data-dismiss="modal">Yes
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,34 +91,34 @@
 
     <div class="row">
         <div class="col-sm-6 col-md-4 " ng-repeat="song in songs track by $index">
-            <div class="thumbnail text-center well well-sm">
+            <div class=" text-center">
 
-                <div class="embed-responsive embed-responsive-4by3 ">
-                    <iframe class="embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
+                <div class="  embed-responsive embed-responsive-4by3 ">
+                    <iframe class=" thumbnail embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
                 </div>
 
-                <div class="caption" ng-init="getSongDetails(song,$index)">
+                <div class="caption" style="padding-top: 5px" ng-init="getSongDetails(song,$index)">
 
                     <script>$(function () {
                         $('[data-toggle="popover"]').popover()
                     });</script>
-                    <!--<h3>{{title[$index]}}</h3>-->
                     <p>
 
-                        <button tabindex="0" class="btn btn-info col-md-10" role="button"
+                        <button tabindex="0" class="btn btn-primary col-md-10" role="button"
                                 data-toggle="popover" data-placement="top" data-trigger="focus"
                                 title="{{''+title[$index]}}"
                                 ng-click="getSongDetails(song)"
                                 data-content="{{details[$index]}}" style="overflow: hidden">
                             {{title[$index] }}
                         </button>
-                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger pull-right " title="Delete Song"><i
+                        <button type="button" ng-click="deleteSong(song)" class="btn btn-danger pull-right "
+                                title="Delete Song"><i
                                 class="fa fa-trash-o"></i></button>
 
 
                         <br>
                     </p>
-                </div>
+                </div><br>
             </div>
         </div>
     </div>

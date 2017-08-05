@@ -24,8 +24,8 @@
 
                         <div class="input-group container">
                             <div class="text-center">
-                            <input ng-model="newPlaylistDetails.playlistName" type="text" class="form-control"
-                                   placeholder="Playlist Name" style="width: 40%"></div>
+                                <input ng-model="newPlaylistDetails.playlistName" type="text" class="form-control"
+                                       placeholder="Playlist Name" style="width: 40%"></div>
                             <br>
                             <br>
                             <!--Toggle switch-->
@@ -61,14 +61,21 @@
     <div class="row">
         <div class="col-sm-6 col-md-4 " style="cursor: pointer" ng-repeat="playlist in playlists track by $index"
              ng-click="openPlaylist(playlist.name)">
-            <div class="thumbnail text-center well well-sm">
+            <div class=" text-center">
 
-                  <div class="embed-responsive embed-responsive-4by3 ">
-                      <iframe class="embed-responsive-item" ng-src="{{getPlayAllUrl(playlist.songs)}}" allowfullscreen></iframe>
-                  </div>
+                <div class="  embed-responsive embed-responsive-4by3 ">
+                    <iframe class="thumbnail embed-responsive-item" ng-src="{{getPlayAllUrl(playlist.songs)}}"
+                            allowfullscreen></iframe>
+                </div>
                 <div class="caption text-capitalize">
-                    <h3>{{playlist.name}}</h3>
-                    <p>
+                    <a type="button" class="btn " style="width: 100%;line-height: 100%;background-color: transparent">
+
+                        <span class="lead text-center btn " style="width:100%;background-color: rgba(0,12,83,0.8);color: bisque">
+                            {{playlist.name}} </span>
+
+
+                    </a>
+                    <!--<p>
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#playAllModal" ng-click="playAllButton()">Play ALL <span
                                 class="btn-separator"></span>
@@ -78,7 +85,7 @@
                                 data-target="#playAllModal" ng-click="shuffleAllButton()">Shuffle ALL <span
                                 class="btn-separator"></span><i class="fa fa-random"></i>
                         </button>
-                    </p>
+                    </p>-->
                 </div>
             </div>
         </div>

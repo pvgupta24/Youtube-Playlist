@@ -38,7 +38,6 @@ app.controller('homeCtrl',
                 url: '/api/playlists'
             }).then(function success(res) {
             console.log('Success mei ghusa');
-            // console.log(res);
             $rootScope.toast("Loading playlists...",1000);
             $scope.playlists = res.data;
 
@@ -105,10 +104,8 @@ app.controller('headerCtrl',
             $scope.user.loggedIn = false;
         }
         $scope.hideLoginButton = $scope.user.loggedIn;
-        // console.log($sessionStorage.user.loggedIn);
         $scope.$on('event:google-plus-signin-success', function (event, authResult) {
-            // Send login to server or save into cookie
-            //console.log(authResult.w3);
+
             $scope.user = $sessionStorage.user;
             $sessionStorage.user = {
                 loggedIn: true,
@@ -146,27 +143,8 @@ app.controller('headerCtrl',
                 delete $sessionStorage.user.imageUrl;
                 $sessionStorage.user.email = undefined;
                 $state.user = $sessionStorage.user;
-                // console.log($scope.user.imageUrl);
-                // $scope.hideLoginButton=$sessionStorage.user.loggedIn;
                 $state.reload();
             });
         };
 
     }]);
-/*
- var profile, user;
- function onSignIn(googleUser) {
-
- profile = googleUser.getBasicProfile();
- /!* console.log('ID: ' + profile.getId());
- console.log('Name: ' + profile.getName());
- console.log('Image URL: ' + profile.getImageUrl());
- console.log('Email: ' + profile.getEmail());*!/
- user = {
- loggedIn: true,
- id: profile.getId(),
- name: profile.getName(),
- imageUrl: profile.getImageUrl(),
- email: profile.getEmail()
- };
- }*/

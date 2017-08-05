@@ -12,25 +12,25 @@ app.controller('playlistCtrl',
         $scope.playlistName = $sessionStorage.currentPlaylistName;
         $scope.playAllButton = function () {
             refreshPlaylist();
-            $scope.playAllUrl = $scope.songs[0] + "?playlist=";
+            $rootScope.playAllUrl = $scope.songs[0] + "?playlist=";
             for (id in $scope.songs) {
                 if (id > 0)
-                    $scope.playAllUrl += $scope.songs[id] + ',';
+                    $rootScope.playAllUrl += $scope.songs[id] + ',';
             }
-            $scope.playAllUrl.slice(0, -1);
-            $scope.playAllUrl += "&autoplay=1";
+            $rootScope.playAllUrl.slice(0, -1);
+            $rootScope.playAllUrl += "&autoplay=1";
         };
         $scope.shuffleAllButton = function () {
             refreshPlaylist();
             var shuffledPlaylist = shuffle($scope.songs);
-            $scope.playAllUrl = shuffledPlaylist[0] + "?playlist=";
+            $rootScope.playAllUrl = shuffledPlaylist[0] + "?playlist=";
 
             for (id in shuffledPlaylist) {
                 if (id > 0)
-                    $scope.playAllUrl += shuffledPlaylist[id] + ',';
+                    $rootScope.playAllUrl += shuffledPlaylist[id] + ',';
             }
-            $scope.playAllUrl.slice(0, -1);
-            $scope.playAllUrl += "&autoplay=1";
+            $rootScope.playAllUrl.slice(0, -1);
+            $rootScope.playAllUrl += "&autoplay=1";
             console.log(shuffledPlaylist);
         };
         $scope.deletePlaylistButton = function () {
@@ -124,15 +124,10 @@ app.controller('playlistCtrl',
             }).then(function success(res) {
                 $scope.title[index] = res.data.items[0].snippet.title.split("|")[0];
                 $scope.details[index] = res.data.items[0].snippet.description.split("\n")[0];
-                //console.log(song.title);
-                // = song.description;
-                //$scope.title = song.title;
 
             }, function fail(err) {
                 console.log(err);
             });
-            //console.log(song.title);
-            //return song;
         }
     }]);
 

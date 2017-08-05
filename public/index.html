@@ -1,61 +1,65 @@
-<!--Created by Praveen Gupta on 19-07-2017.
-This is just to test the restful apis
--->
+<!--Created by Praveen Gupta on 19-07-2017.-->
 <!DOCTYPE html>
-<html ng-app="mainApp">
+<html lang="en" ng-app="youtubePlaylist">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Angular-Sample</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Youtube Playlist</title>
 
-    <script>
-        function paperController($scope, $http) {
-            $scope.sendData = function () {
-                //var dataObj = {};
-                // if($scope.data !== '')
-                //dataObj = JSON.parse($scope.data);
-                console.log($scope.data);
-                $http({
-                    method: $scope.method,
-                    url: $scope.url,
-                    data: $scope.data
-                    //withCredentials : true
-                }).then(function (response) {
-                    $scope.serverResponse = response.data;
-                    console.log(response.data);
-                    console.log("I'm done");
-                }, function (response) {
-                    // do nothing, cry!
-                    $scope.serverResponse = "Error!" + response[1];
-                });
-            };
-        }
-        angular.module('mainApp', [])
-            .controller('paperController', paperController);
-    </script>
+    <!--
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    -->
+
+
+    <!--Google Sign IN-->
+
+    <!--Jquery,bootstrap,angular,fa-icons-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script><!--
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ngclipboard/1.1.1/ngclipboard.min.js"></script>-->
+
+    <!--&lt;!&ndash;Toggle switch&ndash;&gt;
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+-->
+    <link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css">
+
+    <link type="text/css" rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.rawgit.com/JustMaier/6ef7788709d675bd8230/raw/3d39d50e66d8d77e05656ed7dd09298be7e86f1f/ngClickCopy.js"></script>
+
+    <!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+    -->
+    <script src="javascripts/google-plus-signin.js"></script>
+
+    <script src="javascripts/main.js"></script>
+    <script src="javascripts/services.js"></script>
+    <script src="javascripts/ctrl.js"></script>
+    <script src="javascripts/playlist.js"></script>
+    <script src="javascripts/playlists.js"></script>
+
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
 </head>
 <body>
-<h1><a href="ind.html">GOTO MAIN index.html(this one is to test apis . remove later)</a></h1>
-<div class="info">
-    use only path as the url, like /api/...
-</div>
-<div class="container" ng-controller="paperController">
-    url : <br>
-    <input type="text" ng-model="url">
-    <br>
-    method : <br>
-    <input type="text" ng-model="method">
-    <br>
-    Data : <br>
-    <textarea ng-model="data"></textarea>
-    <br>
-    <button ng-click="sendData()">Send</button>
-    <h2>The server responded with:</h2>
-    <pre>
-	{{data + serverResponse}}
 
-</pre>
-</div>
+<div ng-include="'templates/header.html'"></div>
+<div class="container scroll" ui-view></div>
+<div ng-include="'templates/toast.html'"></div>
+<div ng-include="'templates/footer.html'"></div>
+
 </body>
 </html>
