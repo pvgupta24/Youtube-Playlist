@@ -1,7 +1,7 @@
 # YouTube-Playlist
 - A YouTube PlayList app made using AngularJS, NodeJS, ExpressJS, MongoDB, CSS, JavaScript. It was done as a part of IEEE-NITK-WebDev Summer Mentorship.
 
-[Demo here](playutube.herokuapp.com)
+[Demo here](https://playutube.herokuapp.com)
 
 ### Features
 - Google Login.
