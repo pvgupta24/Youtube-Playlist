@@ -1,57 +1,6 @@
 /**
- * Created by Praveen Gupta on 19-07-2017.
+ * Created by Praveen Gupta on 06-08-2017.
  */
-app.controller('searchCtrl', ['$sessionStorage', '$scope', '$sce', '$http', '$state','$rootScope',
-    function ($sessionStorage, $scope, $sce, $http, $state,$rootScope) {
-    $scope.trustUrl = function (url) {
-        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
-    };
-    $scope.searchInfo = $sessionStorage.searchInfo;
-    $scope.searchFromAddState = $sessionStorage.searchFromAddState;
-    $scope.addSong = function (id) {
-        $http({
-            method: 'POST',
-            url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
-            data: {song: id}
-        }).then(function success(res) {
-            $state.go('playlist');
-            $rootScope.toast("Song added to "+$sessionStorage.currentPlaylistName,1000);
-        }, function fail() {
-            console.log('Failed bro');
-            $rootScope.toast("Could not add song to "+$sessionStorage.currentPlaylistName+" ,Please try later",1000);
-        });
-    }
-}]);
-
-app.controller('homeCtrl',
-    ['$sessionStorage', '$http', '$scope', '$state','$rootScope', function ($sessionStorage, $http, $scope, $state,$rootScope) {
-
-        $scope.openPlaylist = function (name) {
-            $sessionStorage.currentPlaylistName = name;
-            $state.go('playlist');
-            $rootScope.toast("Loading songs...",1000);
-        };
-        $scope.user = $sessionStorage.user;
-        console.log($scope.user);
-        $http({
-                method: 'GET',
-                url: '/api/playlists'
-            }).then(function success(res) {
-            console.log('Success mei ghusa');
-            $rootScope.toast("Loading playlists...",1000);
-            $scope.playlists = res.data;
-
-        }, function fail(err) {
-            console.log(err);
-            $rootScope.toast("Could not load playlists...",1000);
-        });
-        $scope.formatDate = function (d) {
-            var date = d.split("-");
-            return date[2].slice(0, 2) + " " + ["Jan", "Feb", "Mar", "Apr", "May", "June",
-                    "July", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(date[1])] + " " + date[0];
-        };
-
-    }]);
 
 app.controller('headerCtrl',
     ['$scope', '$window', '$sessionStorage', '$state', '$http','$rootScope', function ($scope, $window, $sessionStorage, $state, $http,$rootScope) {
@@ -62,7 +11,7 @@ app.controller('headerCtrl',
             setTimeout(function() { $myToast.modal('hide'); }, time);
         };
 
-    if ($sessionStorage.searchInfo === undefined)
+        if ($sessionStorage.searchInfo === undefined)
             $sessionStorage.searchInfo = [];
         $scope.search = function (searchInput) {
             if (searchInput !== "" && searchInput !== undefined) {

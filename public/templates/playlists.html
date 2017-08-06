@@ -1,7 +1,7 @@
 <div ng-controller="playlistsCtrl">
     <div>
         <div class="text-center">
-            <button type="button" class="btn btn-lg btn-primary" style="width:50%;" data-toggle="modal"
+            <button type="button" class="btn btn-primary" style="width:50%;" data-toggle="modal"
                     data-target="#addplaylist">
                 Add New Playlist
             </button>
@@ -60,7 +60,7 @@
 
     <div class="row">
         <div class="col-sm-6 col-md-4 " style="cursor: pointer" ng-repeat="playlist in playlists track by $index"
-             ng-click="openPlaylist(playlist.name)">
+             ng-click="openPlaylist(playlist)">
             <div class=" text-center">
 
                 <div class="  embed-responsive embed-responsive-4by3 ">
@@ -69,11 +69,9 @@
                 </div>
                 <div class="caption text-capitalize">
                     <a type="button" class="btn " style="width: 100%;line-height: 100%;background-color: transparent">
-
-                        <span class="lead text-center btn " style="width:100%;background-color: rgba(0,12,83,0.8);color: bisque">
+                        <span class="lead text-center btn "
+                              style="width:100%;background-color: rgba(0,12,83,0.8);color: bisque">
                             {{playlist.name}} </span>
-
-
                     </a>
                 </div>
             </div>

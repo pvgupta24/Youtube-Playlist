@@ -6,6 +6,7 @@ app.controller('playlistsCtrl',
     ['$scope', '$http', '$state', '$sessionStorage', '$sce', '$rootScope',
         function ($scope, $http, $state, $sessionStorage, $sce, $rootScope) {
             $scope.newPlaylistDetails = {};
+            $sessionStorage.currentPlaylist = {};
             $scope.user=$sessionStorage.user;
             $scope.reload = function () {
                 $state.reload();
@@ -32,9 +33,9 @@ app.controller('playlistsCtrl',
                 $rootScope.playAllUrl += "&autoplay=1";
             };
 
-            $scope.openPlaylist = function (name) {
+            $scope.openPlaylist = function (playlist) {
 
-                $sessionStorage.currentPlaylistName = name;
+                $sessionStorage.currentPlaylist = playlist;
                 $state.go('playlist');
                 $rootScope.toast("Opening your playlist...", 1000);
             };

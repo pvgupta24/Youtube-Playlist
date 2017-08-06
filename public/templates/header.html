@@ -26,14 +26,14 @@
                             <input autocomplete="off" type="text" id="searchBox" class="form-control"
                                    ng-model="searchInput"
                                    placeholder="Search Youtube Videos"
-                                   ng-keypress="($event.keyCode === 13)?search(searchInput):console.log('Kuch oh daal bey')">
+                                   ng-keypress="($event.keyCode === 13)?search(searchInput):console.log('Enter something')">
                             <a type="button" ng-click="search(searchInput)"><i class="fa fa-search fa-lg"></i> </a>
                         </div>
 
                     </form>
 
                 </li>
-                <li>
+                <li ng-hide="!hideLoginButton">
                     <a ui-sref="playlists" style="font-size: large;padding-left: 15px"><i
                             class="fa fa-music faa-pulse animated fa-lg"></i> My
                         Playlists</a>

@@ -20,5 +20,6 @@
     <orderEntry type="library" name="clipboard" level="application" />
     <orderEntry type="library" name="ngClickCopy" level="application" />
     <orderEntry type="library" name="loading-bar" level="application" />
+    <orderEntry type="library" name="bootstrap-confirmation" level="application" />
   </component>
 </module>

@@ -4,12 +4,11 @@
 
 app.controller('playlistCtrl',
     ['$state', '$scope', '$sessionStorage', '$http', '$sce', '$rootScope', function ($state, $scope, $sessionStorage, $http, $sce, $rootScope) {
-        $scope.songs=[];
-
+        $scope.songs = [];
         $scope.trustUrl = function (url) {
             return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
         };
-        $scope.playlistName = $sessionStorage.currentPlaylistName;
+        $scope.playlistName = $sessionStorage.currentPlaylist.name;
         $scope.playAllButton = function () {
             refreshPlaylist();
             $rootScope.playAllUrl = $scope.songs[0] + "?playlist=";
@@ -33,26 +32,46 @@ app.controller('playlistCtrl',
             $rootScope.playAllUrl += "&autoplay=1";
             console.log(shuffledPlaylist);
         };
+        $('.deletePlaylist').confirmation({
+            rootSelector: '.deletePlaylist',       // other options
+
+
+            onConfirm: function () {
+
+                if ($sessionStorage.user.email === $sessionStorage.currentPlaylist.user.email)
+                    $scope.deletePlaylistButton();
+                else {
+                    $rootScope.toast("You dont have the permission to delete this.", 800);
+
+                }
+                //$scope.deletePlaylistButton()
+            },
+            onCancel: function () {
+
+                // do something
+            }
+        });
         $scope.deletePlaylistButton = function () {
-            console.log($sessionStorage.currentPlaylistName);
+            console.log($sessionStorage.currentPlaylist.name);
             $http({
                 method: 'POST',
-                url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/delete'
+                url: '/api/playlists/' + $sessionStorage.currentPlaylist.name + '/delete'
             }).then(function success(res) {
-                $rootScope.toast("Playlist Deleted",1000);
+                $rootScope.toast("Playlist Deleted", 1000);
                 console.log('deleted');
-                console.log(res);
+                $rootScope.toast('Playlist deleted successfully', 800);
+
                 $state.go('playlists');
             }, function fail(err) {
                 console.log(err);
-                $rootScope.toast("Could not delete playlist",1000);
+                $rootScope.toast("Could not delete playlist", 1000);
             });
 
         };
         var refreshPlaylist = function () {
             $http({
                 method: 'GET',
-                url: '/api/playlists/playlist/' + $sessionStorage.currentPlaylistName
+                url: '/api/playlists/playlist/' + $sessionStorage.currentPlaylist.name
             }).then(function success(res) {
                 console.log(res);
                 $scope.songs = res.data.songs;
@@ -62,7 +81,6 @@ app.controller('playlistCtrl',
         };
         refreshPlaylist();
         $scope.addSong = function () {
-
 
 
             if ($scope.songUrl !== undefined && $scope.songUrl !== '') {
@@ -76,21 +94,21 @@ app.controller('playlistCtrl',
                 console.log(link);
                 $http({
                     method: 'POST',
-                    url: '/api/playlists/' + $sessionStorage.currentPlaylistName,
+                    url: '/api/playlists/' + $sessionStorage.currentPlaylist.name,
                     data: {song: link}
                 }).then(function success(res) {
                     //myService.toast("Added");
-                    $rootScope.toast("Song added",1000);
+                    $rootScope.toast("Song added", 1000);
                     $scope.songUrl = "";
                     refreshPlaylist();
                 }, function fail() {
                     console.log('Could not add song');
-                    $rootScope.toast("Could not add song. Input proper URL",1000);
+                    $rootScope.toast("Could not add song. Input proper URL", 1000);
                 });
 
             } else {
 
-                $rootScope.toast("Add URL to add a Song",1000);
+                $rootScope.toast("Add URL to add a Song", 1000);
                 console.log("Add URL to song");
             }
 
@@ -100,13 +118,13 @@ app.controller('playlistCtrl',
             console.log(song);
             $http({
                 method: 'POST',
-                url: '/api/playlists/' + $sessionStorage.currentPlaylistName + '/deleteSong',
+                url: '/api/playlists/' + $sessionStorage.currentPlaylist.name + '/deleteSong',
                 data: {song: song}
             }).then(function () {
-                $rootScope.toast("Song deleted",1000);
+                $rootScope.toast("Song deleted", 1000);
                 refreshPlaylist();
             }, function () {
-                $rootScope.toast("Could not delete song...",1000);
+                $rootScope.toast("Could not delete song...", 1000);
                 console.log('Could not delete');
             });
 

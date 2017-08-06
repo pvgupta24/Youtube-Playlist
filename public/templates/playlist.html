@@ -1,7 +1,13 @@
 <div ng-controller="playlistCtrl">
 
-    <div class="container">
+    <div class="container ">
 
+       <!-- <div class="form-group form-inline text-center">
+            <input autocomplete="off" type="text" id="filterBox" class="form-control"
+                   ng-model="search"
+                   placeholder="Search for songs">
+
+        </div>-->
         <div class="row">
 
             <div class="text-uppercase text-center " style="color: lightsalmon;"><h4>{{playlistName}}</h4>
@@ -18,10 +24,14 @@
                         data-target="#playAllModal" ng-click="shuffleAllButton()">Shuffle ALL <span
                         class="btn-separator"></span><i class="fa fa-random"></i>
                 </button>
-                <button type="button" class="btn btn-danger"
-                        data-toggle="modal"
-                        data-target="#deleteModal">Delete <span
-                        class="btn-separator"></span>
+                <script></script>
+                <button type="button" class="btn btn-danger deletePlaylist"
+                        data-toggle="confirmation"
+                        data-btn-ok-label="YES"
+                        data-btn-ok-class="btn btn-success" data-btn-ok-icon="fa fa-trash-o"
+                        data-btn-cancel-label="NO"
+                        data-btn-cancel-class="btn btn-danger"
+                        data-title="Delete Playlist" data-content="Are you sure?" data-placement="right">Delete
                     <i class="fa fa-remove"></i>
                 </button>
             </div>
@@ -51,31 +61,6 @@
             </div>
         </div>
 
-        <!--Delete Modal-->
-        <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalClass"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Delete Confirmation</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete?</p>
-                        <p>There is no turning back</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" ng-click="deletePlaylistButton()"
-                                data-dismiss="modal">Yes
-                        </button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     <div class="input-group">
@@ -90,11 +75,12 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-6 col-md-4 " ng-repeat="song in songs track by $index">
+        <div class="col-sm-6 col-md-4 " ng-repeat="song in songs  track by $index">
             <div class=" text-center">
 
                 <div class="  embed-responsive embed-responsive-4by3 ">
-                    <iframe class=" thumbnail embed-responsive-item" ng-src="{{trustUrl(song)}}" allowfullscreen></iframe>
+                    <iframe class=" thumbnail embed-responsive-item" ng-src="{{trustUrl(song)}}"
+                            allowfullscreen></iframe>
                 </div>
 
                 <div class="caption" style="padding-top: 5px" ng-init="getSongDetails(song,$index)">
@@ -118,7 +104,8 @@
 
                         <br>
                     </p>
-                </div><br>
+                </div>
+                <br>
             </div>
         </div>
     </div>
