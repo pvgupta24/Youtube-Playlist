@@ -74,8 +74,8 @@
     </div>
     <br>
 
-    <div class="row">
-        <div class="col-sm-6 col-md-4 " ng-repeat="song in songs  track by $index">
+    <div class="row card-parent">
+        <div class="col-sm-6 col-md-4 playlist-card" ng-repeat="song in songs  track by $index">
             <div class=" text-center">
 
                 <div class="  embed-responsive embed-responsive-4by3 ">
@@ -90,7 +90,7 @@
                     });</script>
                     <p>
 
-                        <button tabindex="0" class="btn btn-primary col-md-10" role="button"
+                        <button tabindex="0" class="btn btn-primary col-md-10 vid-name" role="button"
                                 data-toggle="popover" data-placement="top" data-trigger="focus"
                                 title="{{''+title[$index]}}"
                                 ng-click="getSongDetails(song)"

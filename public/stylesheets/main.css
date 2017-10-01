@@ -195,3 +195,51 @@ a {
 #filterBox:focus {
     width: 800px;
 }
+
+.card-parent {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 90vw;
+}
+
+.playlist-card {
+    flex: 1 1 auto;
+    min-width: 25vw;
+    justify-content: flex-start;
+}
+
+
+@media (max-width: 768px) {
+    .card-parent {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 90vw;
+    }
+
+    .playlist-card {
+        flex: 1 1 auto;
+        max-width: 44vw;
+    }
+    .caption {
+        max-width: 44vw;
+    }
+    .vid-name {
+        max-width: 32vw;
+        overflow: scroll !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .playlist-card {
+        flex: 1 1 auto;
+        max-width: 80vw;
+    }
+    .caption {
+        max-width: 80vw;
+    }
+    .vid-name {
+        max-width: 60vw;
+        overflow: scroll !important;
+    }
+
+}
