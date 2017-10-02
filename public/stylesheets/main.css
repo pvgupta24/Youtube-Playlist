@@ -227,6 +227,12 @@ a {
         max-width: 32vw;
         overflow: scroll !important;
     }
+    #filterBox {
+      width: 100%;
+    }
+    #filterBox:focus {
+      width: 100%;
+    }
 }
 
 @media (max-width: 576px) {
