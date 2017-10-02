@@ -1,30 +1,29 @@
 # YouTube-Playlist
-- A YouTube PlayList app made using AngularJS, NodeJS, ExpressJS, MongoDB, CSS, JavaScript. It was done as a part of IEEE-NITK-WebDev Summer Mentorship.
+- **Youtube-Playlist** is a web app that lets any user add Youtube videos to a playlist. Built with AngularJS, NodeJS, ExpressJS, MongoDB, CSS, JavaScript. It was done as a part of IEEE-NITK-WebDev Summer Mentorship. [Demo our app here](https://playutube.herokuapp.com)
 
-[Demo here](https://playutube.herokuapp.com)
-
-### Features
-- Google Login.
-- Make public or private playlists with YouTube Video Links.
-- Search for YouTube-Videos from the app and add to Playlist or copy the Link and add manually.
+## Features
+- Google login.
+- Make public or private playlists with YouTube video links.
+- Search for Youtube videos add them to your playlist or copy the link and add it manually.
 - Play/Shuffle Playlist.
-- Nice User Interface.
+- User Interface.
 
-### Running the Project
-- Install NodeJS, MongoDB.
+## Running the Project
+- Install NodeJS and MongoDB.
 - Run ```npm install``` to download the packages
 - Start the MongoDB server
-- ```npm start``` or ```node app``` 
-- In Browser,Type http://localhost:3000/ 
+- ```npm start``` or ```node app```
+- In your browser, type http://localhost:3000/
 
-### Contribution
+## Contribution
 - The repository is open to contribution from all interested developers.
-- Also, you can write by opening an Issue [here](https://github.com/pvgupta24/Youtube-Playlist/issues) and also solve a current issue if possible.
-- Fork this project to your Github acoount.
-- Send Pull Requests with proper explanation on what changes are done.
+- Help solve an issue [here](https://github.com/pvgupta24/Youtube-Playlist/issues).
+- Fork this project to your Github account.
+- Send pull requests with an explanation on what changes are done.
 
-### License
+## License
 - The repository is under [MIT License](https://github.com/pvgupta24/Youtube-Playlist/blob/master/LICENSE)
-### Contributors
+
+## Contributors
 - [Praveen Gupta](https://github.com/pvgupta24) (pvgupta24@gmail.com)
 - [Mishal Shah](https://github.com/mishal23) (shahmishal1998@gmail.com)
