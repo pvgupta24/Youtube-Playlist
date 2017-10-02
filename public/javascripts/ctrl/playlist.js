@@ -6,6 +6,9 @@ app.controller('playlistCtrl',
     ['$state', '$scope', '$sessionStorage', '$http', '$sce', '$rootScope', function ($state, $scope, $sessionStorage, $http, $sce, $rootScope) {
         $scope.songs = [];
         $scope.trustUrl = function (url) {
+            if (url === undefined) {
+              return
+            }
             return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + url);
         };
         $scope.playlistName = $sessionStorage.currentPlaylist.name;
