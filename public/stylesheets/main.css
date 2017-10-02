@@ -62,7 +62,6 @@ body {
 }
 
 #navbar ul li form{
-    display: flex;
     align-items: center;
 }
 
