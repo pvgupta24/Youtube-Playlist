@@ -56,10 +56,26 @@ body {
 }
 
 .navbar-login {
-
     width: 350px;
     padding: 10px;
     padding-bottom: 0;
+}
+
+#navbar ul li form{
+    display: flex;
+    align-items: center;
+}
+
+#searchBox {
+    display: inline;
+}
+
+.form-group {
+    margin: 0 auto;
+}
+
+li.dropdown {
+    text-align: center;
 }
 
 @media (max-width: 768px) {
