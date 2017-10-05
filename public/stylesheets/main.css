@@ -98,7 +98,9 @@ a {
     padding: 15px 15px
 }
 
-
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: transparent;
+}
 
 .header {
     background-color: transparent;
@@ -186,7 +188,12 @@ a {
     padding: 0 20px 10px;
 }
 
-#searchBox {
+#searchBox{
+    border-radius: 15px;
+}
+
+
+/* #searchBox {
     width: 200px;
     border-radius: 15px;
     -webkit-transition: width 0.18s linear 0.18s;
@@ -197,7 +204,8 @@ a {
 }
 #searchBox:focus {
     width: 500px;
-}
+} */
+
 #filterBox {
     width: 500px;
     border-radius: 15px;
@@ -263,4 +271,25 @@ a {
         overflow: scroll !important;
     }
 
+}
+
+@media(max-width: 768px){
+    .search-button{
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px){
+    #searchBox{
+        width: 200px;
+        -webkit-transition: width 0.18s linear 0.18s;
+        -moz-transition: width 0.18s linear 0.18s;
+        -ms-transition: width 0.18s linear 0.18s;
+        -o-transition: width 0.18s linear 0.18s;
+        transition: width 0.18s linear 0.18s;
+    }
+
+    #searchBox:focus {
+      width: 500px;
+    }
 }
