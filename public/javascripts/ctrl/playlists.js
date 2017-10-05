@@ -47,7 +47,6 @@ app.controller('playlistsCtrl',
                         url += shuffledPlaylist[id] + ',';
                 }
                 url.slice(0, -1);
-                console.log(url);
                 return $sce.trustAsResourceUrl("https://www.youtube.com/embed/" + url );
             };
             $scope.addPlaylist = function () {
