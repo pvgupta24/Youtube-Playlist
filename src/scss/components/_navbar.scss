@@ -1,0 +1,25 @@
+//Navbar
+
+.navbar-login {
+    width: 350px;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+#navbar ul li form{
+    align-items: center;
+}
+
+.navbar-nav > li > a {
+    color: $color-bisque;
+    padding: 15px 15px
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+    background: transparent;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: rgba($color-blue-sky, 0.52);
+    text-decoration: none;
+}

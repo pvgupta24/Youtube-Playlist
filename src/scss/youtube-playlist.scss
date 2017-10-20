@@ -1,0 +1,10 @@
+//Main Sass Manifest
+
+//Import base
+@import 'base/variables';
+@import 'base/main';
+
+//Import Components
+// @import 'components/button';
+@import 'components/navbar';
+@import 'components/footer';

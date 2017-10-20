@@ -1,0 +1,292 @@
+body {
+  background: url("http://www.wallpaperup.com/uploads/wallpapers/2012/02/26/1392/big_thumb_899f4bb67e8f6bc7ee13bc1d9581a75f.jpg");
+  padding: 10px; }
+
+#login-dp {
+  min-width: 250px;
+  padding: 14px 14px 0;
+  overflow: hidden; }
+
+#login-dp .help-block {
+  font-size: 12px; }
+
+#login-dp .bottom {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-top: 1px solid #dddddd;
+  clear: both;
+  padding: 14px; }
+
+#login-dp .social-buttons {
+  margin: 12px 0; }
+
+#login-dp .social-buttons a {
+  width: 49%; }
+
+#login-dp .form-group {
+  margin-bottom: 10px; }
+
+#searchBox {
+  display: inline; }
+
+.form-group {
+  margin: 0 auto; }
+
+li.dropdown {
+  text-align: center; }
+
+@media (max-width: 768px) {
+  #login-dp {
+    background-color: inherit;
+    color: #ffffff; }
+  #login-dp .bottom {
+    background-color: inherit;
+    border-top: 0 none; } }
+
+a {
+  cursor: pointer; }
+
+.header {
+  background-color: transparent; }
+
+.scroll {
+  padding-bottom: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 600px; }
+
+.slow .toggle-group {
+  transition: left 0.7s;
+  -webkit-transition: left 0.7s; }
+
+.shape {
+  border-style: solid;
+  border-width: 0 70px 40px 0;
+  float: right;
+  height: 0px;
+  width: 0px;
+  -ms-transform: rotate(360deg);
+  /* IE 9 */
+  -o-transform: rotate(360deg);
+  /* Opera 10.5 */
+  -webkit-transform: rotate(360deg);
+  /* Safari and Chrome */
+  transform: rotate(360deg); }
+
+.offer {
+  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid #dddddd;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
+  overflow: hidden; }
+
+.offer:hover {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid #000c53;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+  margin: 15px 0;
+  overflow: hidden; }
+
+.offer-radius {
+  border-radius: px; }
+
+.offer-success {
+  border-color: #27ae60; }
+
+.offer-success .shape {
+  border-color: rgba(255, 255, 255, 0) #27ae60 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+
+.offer-primary .shape {
+  border-color: rgba(255, 255, 255, 0) #2980b9 rgba(255, 255, 255, 0) rgba(255, 255, 255, 0); }
+
+.shape-text {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  position: relative;
+  right: -40px;
+  top: 2px;
+  white-space: nowrap;
+  -ms-transform: rotate(30deg);
+  /* IE 9 */
+  -o-transform: rotate(360deg);
+  /* Opera 10.5 */
+  -webkit-transform: rotate(30deg);
+  /* Safari and Chrome */
+  transform: rotate(30deg); }
+
+.offer-content {
+  padding: 0 20px 10px; }
+
+#searchBox {
+  border-radius: 15px; }
+
+/* #searchBox {
+    width: 200px;
+    border-radius: 15px;
+    -webkit-transition: width 0.18s linear 0.18s;
+    -moz-transition: width 0.18s linear 0.18s;
+    -ms-transition: width 0.18s linear 0.18s;
+    -o-transition: width 0.18s linear 0.18s;
+    transition: width 0.18s linear 0.18s;
+}
+#searchBox:focus {
+    width: 500px;
+} */
+#filterBox {
+  width: 500px;
+  border-radius: 15px;
+  -webkit-transition: width 0.18s linear 0.18s;
+  -moz-transition: width 0.18s linear 0.18s;
+  -ms-transition: width 0.18s linear 0.18s;
+  -o-transition: width 0.18s linear 0.18s;
+  transition: width 0.18s linear 0.18s; }
+
+#filterBox:focus {
+  width: 800px; }
+
+.card-parent {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 90vw; }
+
+.playlist-card {
+  flex: 1 1 auto;
+  min-width: 25vw;
+  justify-content: flex-start; }
+
+@media (max-width: 768px) {
+  .card-parent {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 90vw; }
+  .playlist-card {
+    flex: 1 1 auto;
+    max-width: 44vw; }
+  .caption {
+    max-width: 44vw; }
+  .vid-name {
+    max-width: 32vw;
+    overflow: scroll !important; }
+  #filterBox {
+    width: 100%; }
+  #filterBox:focus {
+    width: 100%; } }
+
+@media (max-width: 576px) {
+  .playlist-card {
+    flex: 1 1 auto;
+    max-width: 80vw; }
+  .caption {
+    max-width: 80vw; }
+  .vid-name {
+    max-width: 60vw;
+    overflow: scroll !important; } }
+
+@media (max-width: 768px) {
+  .search-button {
+    text-align: center; } }
+
+@media (min-width: 992px) {
+  #searchBox {
+    width: 200px;
+    -webkit-transition: width 0.18s linear 0.18s;
+    -moz-transition: width 0.18s linear 0.18s;
+    -ms-transition: width 0.18s linear 0.18s;
+    -o-transition: width 0.18s linear 0.18s;
+    transition: width 0.18s linear 0.18s; }
+  #searchBox:focus {
+    width: 500px; } }
+
+.navbar-login {
+  width: 350px;
+  padding: 10px;
+  padding-bottom: 0; }
+
+#navbar ul li form {
+  align-items: center; }
+
+.navbar-nav > li > a {
+  color: #ffe4c4;
+  padding: 15px 15px; }
+
+.nav .open > a, .nav .open > a:focus, .nav .open > a:hover {
+  background: transparent; }
+
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: rgba(56, 125, 211, 0.52);
+  text-decoration: none; }
+
+/*
+footer {
+    !*
+    clear: both;
+    *!
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $color-whitesmoke;
+    color: darkblue;
+    line-height: 20px;
+    padding-top: 10px;
+}*/
+#myFooter {
+  clear: both;
+  position: relative;
+  text-align: center;
+  background-color: rgba(123, 130, 134, 0.6);
+  color: #ffe4c4;
+  padding-top: 30px;
+  /*width: 100%;*/
+  bottom: -3em; }
+
+#myFooter .footer-bottom {
+  background-color: #333333;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center; }
+
+#myFooter .row {
+  margin-bottom: 20px; }
+
+#myFooter ul {
+  list-style-type: none;
+  padding-left: 0;
+  line-height: 1.7; }
+
+#myFooter h5 {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 15px; }
+
+#myFooter a {
+  color: #d2d1d1;
+  text-decoration: none; }
+
+#myFooter a:hover,
+#myFooter a:focus {
+  text-decoration: none;
+  color: #ffffff; }
+
+#myFooter .social {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 16px; }
+
+#myFooter .social a {
+  font-size: 32px;
+  color: #f9f9f9;
+  padding: 10px;
+  transition: 1s; }
+
+#myFooter .social-networks a:hover {
+  text-decoration: none; }
+
+#myFooter .facebook:hover {
+  color: #0077e2; }
+
+#myFooter .github:hover {
+  color: #000000; }
+
+#myFooter .envelope:hover {
+  color: #dd4b39; }
