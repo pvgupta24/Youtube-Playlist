@@ -1,0 +1,93 @@
+//Footer
+
+/*
+footer {
+    !*
+    clear: both;
+    *!
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: $color-whitesmoke;
+    color: darkblue;
+    line-height: 20px;
+    padding-top: 10px;
+}*/
+
+
+#myFooter {
+    clear: both;
+    position: relative;
+    text-align: center;
+    background-color: rgba($color-gray-slate, 0.6);
+    color: $color-bisque;
+    padding-top: 30px;
+    /*width: 100%;*/
+    bottom: -3em;
+}
+
+#myFooter .footer-bottom {
+    background-color: $color-gray-dark;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#myFooter .row {
+    margin-bottom: 20px;
+}
+
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 1.7;
+}
+
+#myFooter h5 {
+    font-size: 18px;
+    color: $color-white;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+#myFooter a {
+    color: $color-gray-medium;
+    text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: $color-white;
+}
+
+#myFooter .social {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 16px;
+}
+
+#myFooter .social a {
+    font-size: 32px;
+    color: $color-gray-lighter;
+    padding: 10px;
+    transition: 1s;
+}
+
+#myFooter .social-networks a:hover {
+    text-decoration: none;
+}
+
+#myFooter .facebook:hover {
+    color: $color-blue-facebook-hover-light;
+}
+
+#myFooter .github:hover {
+    color: $color-black;
+}
+
+#myFooter .envelope:hover {
+    color: $color-coral;
+}

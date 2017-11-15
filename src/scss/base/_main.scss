@@ -1,0 +1,249 @@
+//Main
+
+body {
+    background: url('http://www.wallpaperup.com/uploads/wallpapers/2012/02/26/1392/big_thumb_899f4bb67e8f6bc7ee13bc1d9581a75f.jpg');
+        padding: 10px;
+
+}
+
+#login-dp {
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow: hidden;
+}
+
+
+#login-dp .help-block {
+    font-size: 12px
+}
+
+#login-dp .bottom {
+    background-color: rgba($color-white, .8);
+    border-top: 1px solid $color-gray-light;
+    clear: both;
+    padding: 14px;
+}
+
+#login-dp .social-buttons {
+    margin: 12px 0
+}
+
+#login-dp .social-buttons a {
+    width: 49%;
+}
+
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+
+#searchBox {
+    display: inline;
+}
+
+.form-group {
+    margin: 0 auto;
+}
+
+li.dropdown {
+    text-align: center;
+}
+
+@media (max-width: $breakpoint-md) {
+    #login-dp {
+        background-color: inherit;
+        color: $color-white;
+    }
+
+    #login-dp .bottom {
+        background-color: inherit;
+        border-top: 0 none;
+    }
+}
+
+a {
+    cursor: pointer
+}
+
+.header {
+    background-color: transparent;
+
+}
+
+.scroll {
+    padding-bottom: 40px;
+    overflow-y: auto;
+    overflow-x:hidden ;
+    min-height: 600px;
+}
+
+.slow .toggle-group {
+    transition: left 0.7s;
+    -webkit-transition: left 0.7s;
+}
+
+.shape {
+    border-style: solid;
+    border-width: 0 70px 40px 0;
+    float: right;
+    height: 0px;
+    width: 0px;
+    -ms-transform: rotate(360deg); /* IE 9 */
+    -o-transform: rotate(360deg); /* Opera 10.5 */
+    -webkit-transform: rotate(360deg); /* Safari and Chrome */
+    transform: rotate(360deg);
+}
+
+.offer {
+    background: rgba($color-white, 0.52);
+    border: 1px solid $color-gray-light;
+    box-shadow: 0 0px 0px rgba($color-black, 0.2);
+    margin: 15px 0;
+    overflow: hidden;
+}
+.offer:hover{
+    background: rgba($color-white, 0.72);
+    border: 1px solid $color-blue-dark;
+    box-shadow: 0 0px 0px rgba($color-black, 0.2);
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.offer-radius {
+    border-radius: px;
+}
+
+.offer-success {
+    border-color: $color-green-kelly;
+}
+
+.offer-success .shape {
+    border-color: rgba($color-white, 0) $color-green-kelly rgba($color-white, 0) rgba($color-white, 0);
+}
+
+.offer-primary .shape {
+    border-color: rgba($color-white, 0) $color-blue rgba($color-white, 0) rgba($color-white, 0);
+}
+
+.shape-text {
+    color: $color-white;
+    font-size: 10px;
+    font-weight: bold;
+    position: relative;
+    right: -40px;
+    top: 2px;
+    white-space: nowrap;
+    -ms-transform: rotate(30deg); /* IE 9 */
+    -o-transform: rotate(360deg); /* Opera 10.5 */
+    -webkit-transform: rotate(30deg); /* Safari and Chrome */
+    transform: rotate(30deg);
+}
+
+.offer-content {
+    padding: 0 20px 10px;
+}
+
+#searchBox{
+    border-radius: 15px;
+}
+
+
+/* #searchBox {
+    width: 200px;
+    border-radius: 15px;
+    -webkit-transition: width 0.18s linear 0.18s;
+    -moz-transition: width 0.18s linear 0.18s;
+    -ms-transition: width 0.18s linear 0.18s;
+    -o-transition: width 0.18s linear 0.18s;
+    transition: width 0.18s linear 0.18s;
+}
+#searchBox:focus {
+    width: 500px;
+} */
+
+#filterBox {
+    width: 500px;
+    border-radius: 15px;
+    -webkit-transition: width 0.18s linear 0.18s;
+    -moz-transition: width 0.18s linear 0.18s;
+    -ms-transition: width 0.18s linear 0.18s;
+    -o-transition: width 0.18s linear 0.18s;
+    transition: width 0.18s linear 0.18s;
+}
+#filterBox:focus {
+    width: 800px;
+}
+
+.card-parent {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 90vw;
+}
+
+.playlist-card {
+    flex: 1 1 auto;
+    min-width: 25vw;
+    justify-content: flex-start;
+}
+
+
+@media (max-width: $breakpoint-md) {
+    .card-parent {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 90vw;
+    }
+
+    .playlist-card {
+        flex: 1 1 auto;
+        max-width: 44vw;
+    }
+    .caption {
+        max-width: 44vw;
+    }
+    .vid-name {
+        max-width: 32vw;
+        overflow: scroll !important;
+    }
+    #filterBox {
+      width: 100%;
+    }
+    #filterBox:focus {
+      width: 100%;
+    }
+}
+
+@media (max-width: $breakpoint-sm) {
+    .playlist-card {
+        flex: 1 1 auto;
+        max-width: 80vw;
+    }
+    .caption {
+        max-width: 80vw;
+    }
+    .vid-name {
+        max-width: 60vw;
+        overflow: scroll !important;
+    }
+
+}
+
+@media(max-width: $breakpoint-md){
+    .search-button{
+        text-align: center;
+    }
+}
+
+@media (min-width: $breakpoint-lg){
+    #searchBox{
+        width: 200px;
+        -webkit-transition: width 0.18s linear 0.18s;
+        -moz-transition: width 0.18s linear 0.18s;
+        -ms-transition: width 0.18s linear 0.18s;
+        -o-transition: width 0.18s linear 0.18s;
+        transition: width 0.18s linear 0.18s;
+    }
+
+    #searchBox:focus {
+      width: 500px;
+    }
+}
