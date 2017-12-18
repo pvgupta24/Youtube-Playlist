@@ -19,10 +19,11 @@ var playlistSchema = new Schema(
         updated:{type:Date}
     }
 );
-playlistSchema.pre('save', function (next) {
-    this.updated = new Date();
+playlistSchema.pre('save', function (next) { 
+    const currDate = new Date();   
+    this.updated = currDate;
     if (!this.created)
-        this.created = new Date();
+        this.created = currDate;
     next();
 });
 module.exports = mongoose.model('Playlist', playlistSchema, 'playlists');

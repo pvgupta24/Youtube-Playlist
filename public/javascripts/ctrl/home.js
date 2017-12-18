@@ -27,7 +27,7 @@ app.controller('homeCtrl',
         $scope.formatDate = function (d) {
             var date = d.split("-");
             return date[2].slice(0, 2) + " " + ["Jan", "Feb", "Mar", "Apr", "May", "June",
-                    "July", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(date[1])] + " " + date[0];
+                    "July", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(date[1])-1] + " " + date[0];
         };
 
     }]);
