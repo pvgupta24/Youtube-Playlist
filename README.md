@@ -11,6 +11,7 @@
 ## Running the Project
 - Install NodeJS and MongoDB.
 - Run ```npm install``` to download the packages
+- You may need to use ```npm rebuild node-sass --force``` to build node-sass for your system if you get error.
 - Start the MongoDB server
 - ```npm start``` or ```node app```
 - In your browser, type http://localhost:3000/
