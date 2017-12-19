@@ -1,5 +1,5 @@
 # YouTube-Playlist
-- **Youtube-Playlist** is a MEAN stack web app that lets users add Youtube videos to a playlist. Built with AngularJS, NodeJS, ExpressJS, MongoDB.
+**Youtube-Playlist** is a MEAN stack web app that lets users add Youtube videos to a playlist. Built with AngularJS, NodeJS, ExpressJS, MongoDB.
 
 [Our App here](https://playutube.herokuapp.com)
 
