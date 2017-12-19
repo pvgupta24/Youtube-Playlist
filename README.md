@@ -1,5 +1,7 @@
 # YouTube-Playlist
-- **Youtube-Playlist** is a web app that lets any user add Youtube videos to a playlist. Built with AngularJS, NodeJS, ExpressJS, MongoDB.[Our App here](https://playutube.herokuapp.com)
+- **Youtube-Playlist** is a MEAN stack web app that lets users add Youtube videos to a playlist. Built with AngularJS, NodeJS, ExpressJS, MongoDB.
+
+[Our App here](https://playutube.herokuapp.com)
 
 ## Features
 - Google authentication for login.
@@ -8,17 +10,12 @@
 - Play/Shuffle Playlist.
 
 ## Running the Project
-> Install NodeJS and MongoDB.
-
-> Run `npm install` in the root directory to download the packages.
-
-> You may need to use `npm rebuild node-sass --force` in the root directory to build node-sass for your system if you get error.
-
-> Start the MongoDB server.
-
-> Start the server using `npm start` or `node app`
-
-> In your browser, goto http://localhost:3000/
+1. Install NodeJS and MongoDB.
+2. Run `npm install` in the root directory to download the packages.
+3. You may need to use `npm rebuild node-sass --force` in the root directory to build node-sass for your system if you get error.
+4. Start the MongoDB server.
+5. Start the server using `npm start` or `node app`
+6. In your browser, goto http://localhost:3000/
 
 ## Contribution
 - The repository is open to contribution from all interested developers.
